@@ -23,6 +23,7 @@ Section Cross References
     main.o(.ARM.exidx.text.main) refers to main.o(.text.main) for [Anonymous Symbol]
     realm.o(.text.runGame) refers to stm32l031lib.o(.text.eputs) for eputs
     realm.o(.text.runGame) refers to realm.o(.text.showHelp) for showHelp
+    realm.o(.text.runGame) refers to realm.o(.text.random) for random
     realm.o(.text.runGame) refers to realm.o(.text.initRealm) for initRealm
     realm.o(.text.runGame) refers to realm.o(.text.initPlayer) for initPlayer
     realm.o(.text.runGame) refers to realm.o(.text.showPlayer) for showPlayer
@@ -40,6 +41,8 @@ Section Cross References
     realm.o(.ARM.exidx.text.showGameMessage) refers to realm.o(.text.showGameMessage) for [Anonymous Symbol]
     realm.o(.text.getUserInput) refers to stm32l031lib.o(.text.egetchar) for egetchar
     realm.o(.ARM.exidx.text.getUserInput) refers to realm.o(.text.getUserInput) for [Anonymous Symbol]
+    realm.o(.text.random) refers to realm.o(.text.prbs) for prbs
+    realm.o(.ARM.exidx.text.random) refers to realm.o(.text.random) for [Anonymous Symbol]
     realm.o(.text.initRealm) refers to realm.o(.text.random) for random
     realm.o(.ARM.exidx.text.initRealm) refers to realm.o(.text.initRealm) for [Anonymous Symbol]
     realm.o(.text.initPlayer) refers to stm32l031lib.o(.text.eputs) for eputs
@@ -89,8 +92,6 @@ Section Cross References
     realm.o(.text.addWeapon) refers to stm32l031lib.o(.text.eputchar) for eputchar
     realm.o(.text.addWeapon) refers to realm.o(.rodata.str1.1) for .L.str.42
     realm.o(.ARM.exidx.text.addWeapon) refers to realm.o(.text.addWeapon) for [Anonymous Symbol]
-    realm.o(.text.random) refers to realm.o(.text.prbs) for prbs
-    realm.o(.ARM.exidx.text.random) refers to realm.o(.text.random) for [Anonymous Symbol]
     realm.o(.text.getWeaponName) refers to realm.o(.rodata.str1.1) for .L.str.44
     realm.o(.ARM.exidx.text.getWeaponName) refers to realm.o(.text.getWeaponName) for [Anonymous Symbol]
     realm.o(.ARM.exidx.text.zap) refers to realm.o(.text.zap) for [Anonymous Symbol]
@@ -250,6 +251,7 @@ Removing Unused input sections from the image.
     Removing realm.o(.ARM.exidx.text.showHelp), (8 bytes).
     Removing realm.o(.ARM.exidx.text.showGameMessage), (8 bytes).
     Removing realm.o(.ARM.exidx.text.getUserInput), (8 bytes).
+    Removing realm.o(.ARM.exidx.text.random), (8 bytes).
     Removing realm.o(.ARM.exidx.text.initRealm), (8 bytes).
     Removing realm.o(.ARM.exidx.text.initPlayer), (8 bytes).
     Removing realm.o(.ARM.exidx.text.showPlayer), (8 bytes).
@@ -259,7 +261,6 @@ Removing Unused input sections from the image.
     Removing realm.o(.ARM.exidx.text.setHealth), (8 bytes).
     Removing realm.o(.ARM.exidx.text.setStrength), (8 bytes).
     Removing realm.o(.ARM.exidx.text.addWeapon), (8 bytes).
-    Removing realm.o(.ARM.exidx.text.random), (8 bytes).
     Removing realm.o(.ARM.exidx.text.getWeaponName), (8 bytes).
     Removing realm.o(.text.zap), (2 bytes).
     Removing realm.o(.ARM.exidx.text.zap), (8 bytes).
@@ -407,19 +408,19 @@ Image Symbol Table
     __arm_cp.0_2                             0x08000250   Number         4  system_stm32l0xx.o(.text.SystemInit)
     __arm_cp.0_3                             0x08000254   Number         4  system_stm32l0xx.o(.text.SystemInit)
     [Anonymous Symbol]                       0x08000258   Section        0  realm.o(.text.addWeapon)
-    __arm_cp.12_4                            0x08000334   Number         4  realm.o(.text.addWeapon)
+    __arm_cp.13_4                            0x08000334   Number         4  realm.o(.text.addWeapon)
     [Anonymous Symbol]                       0x08000364   Section        0  realm.o(.text.doChallenge)
-    __arm_cp.9_3                             0x08000598   Number         4  realm.o(.text.doChallenge)
-    __arm_cp.9_11                            0x080005ec   Number         4  realm.o(.text.doChallenge)
-    __arm_cp.9_12                            0x080005f0   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_3                            0x08000598   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_11                           0x080005ec   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_12                           0x080005f0   Number         4  realm.o(.text.doChallenge)
     LightningSpellDamage                     0x080005fc   Number         0  realm.o(.text.doChallenge)
     FireSpellDamage                          0x08000608   Number         0  realm.o(.text.doChallenge)
     FreezeSpellDamage                        0x08000614   Number         0  realm.o(.text.doChallenge)
-    __arm_cp.9_19                            0x08000618   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_19                           0x08000618   Number         4  realm.o(.text.doChallenge)
     BadGuyDamage                             0x0800061c   Number         0  realm.o(.text.doChallenge)
-    __arm_cp.9_21                            0x08000620   Number         4  realm.o(.text.doChallenge)
-    __arm_cp.9_23                            0x0800062c   Number         4  realm.o(.text.doChallenge)
-    __arm_cp.9_24                            0x08000630   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_21                           0x08000620   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_23                           0x0800062c   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_24                           0x08000630   Number         4  realm.o(.text.doChallenge)
     [Anonymous Symbol]                       0x08000634   Section        0  stm32l031lib.o(.text.egetchar)
     [Anonymous Symbol]                       0x08000644   Section        0  stm32l031lib.o(.text.eputchar)
     __arm_cp.5_0                             0x08000650   Number         4  stm32l031lib.o(.text.eputchar)
@@ -445,44 +446,44 @@ Image Symbol Table
     [Anonymous Symbol]                       0x080008dc   Section        0  stm32l031lib.o(.text.printDecimal)
     [Anonymous Symbol]                       0x08000912   Section        0  realm.o(.text.random)
     [Anonymous Symbol]                       0x08000928   Section        0  realm.o(.text.runGame)
-    __arm_cp.0_1                             0x08000a3c   Number         4  realm.o(.text.runGame)
-    __arm_cp.0_3                             0x08000a60   Number         4  realm.o(.text.runGame)
-    __arm_cp.0_4                             0x08000a64   Number         4  realm.o(.text.runGame)
-    [Anonymous Symbol]                       0x08000aa8   Section        0  realm.o(.text.setHealth)
-    [Anonymous Symbol]                       0x08000ab6   Section        0  realm.o(.text.setStrength)
-    [Anonymous Symbol]                       0x08000ac0   Section        0  realm.o(.text.showGameMessage)
-    [Anonymous Symbol]                       0x08000adc   Section        0  realm.o(.text.showHelp)
-    [Anonymous Symbol]                       0x08000b74   Section        0  realm.o(.text.showPlayer)
-    [Anonymous Symbol]                       0x08000c60   Section        0  realm.o(.text.showRealm)
-    __arm_cp.7_1                             0x08000cd0   Number         4  realm.o(.text.showRealm)
-    [Anonymous Symbol]                       0x08000d40   Section        0  realm.o(.text.step)
-    __arm_cp.8_1                             0x08000ed0   Number         4  realm.o(.text.step)
-    __arm_cp.8_5                             0x08000f2c   Number         4  realm.o(.text.step)
-    __arm_cp.8_6                             0x08000f30   Number         4  realm.o(.text.step)
-    __arm_cp.8_7                             0x08000f34   Number         4  realm.o(.text.step)
-    __arm_cp.8_8                             0x08000f38   Number         4  realm.o(.text.step)
-    __arm_cp.8_9                             0x08000f3c   Number         4  realm.o(.text.step)
-    __arm_cp.8_10                            0x08000f40   Number         4  realm.o(.text.step)
-    .text_divfast                            0x08000f44   Section      502  aeabi_sdivfast.o(.text_divfast)
-    WeaponDamage                             0x0800113a   Data          16  realm.o(.rodata.cst16)
-    .L.str.42                                0x0800114a   Data          31  realm.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x0800114a   Section        0  realm.o(.rodata.str1.1)
-    .L.str.20                                0x08001166   Data           3  realm.o(.rodata.str1.1)
-    .L.str.33                                0x08001169   Data          13  realm.o(.rodata.str1.1)
-    .L.str.11                                0x08001176   Data          39  realm.o(.rodata.str1.1)
-    .L.str.30                                0x0800119d   Data          11  realm.o(.rodata.str1.1)
-    .L.str.8                                 0x080011a8   Data          25  realm.o(.rodata.str1.1)
-    .L.str.46                                0x080011c1   Data           6  realm.o(.rodata.str1.1)
-    .L.str.45                                0x080011c7   Data           4  realm.o(.rodata.str1.1)
-    .L.str.32                                0x080011cb   Data          18  realm.o(.rodata.str1.1)
-    .L.str.13                                0x080011dd   Data          29  realm.o(.rodata.str1.1)
-    .L.str.47                                0x080011fa   Data           6  realm.o(.rodata.str1.1)
-    .L.str.36                                0x08001200   Data          29  realm.o(.rodata.str1.1)
-    .L.str.35                                0x0800121d   Data          37  realm.o(.rodata.str1.1)
-    .L.str.9                                 0x08001242   Data          39  realm.o(.rodata.str1.1)
-    .L.str.10                                0x08001269   Data          29  realm.o(.rodata.str1.1)
-    .L.str.12                                0x08001286   Data          39  realm.o(.rodata.str1.1)
-    .L.str.44                                0x080012ad   Data           6  realm.o(.rodata.str1.1)
+    __arm_cp.0_1                             0x08000a40   Number         4  realm.o(.text.runGame)
+    __arm_cp.0_3                             0x08000a64   Number         4  realm.o(.text.runGame)
+    __arm_cp.0_4                             0x08000a68   Number         4  realm.o(.text.runGame)
+    [Anonymous Symbol]                       0x08000aac   Section        0  realm.o(.text.setHealth)
+    [Anonymous Symbol]                       0x08000aba   Section        0  realm.o(.text.setStrength)
+    [Anonymous Symbol]                       0x08000ac4   Section        0  realm.o(.text.showGameMessage)
+    [Anonymous Symbol]                       0x08000ae0   Section        0  realm.o(.text.showHelp)
+    [Anonymous Symbol]                       0x08000b78   Section        0  realm.o(.text.showPlayer)
+    [Anonymous Symbol]                       0x08000c64   Section        0  realm.o(.text.showRealm)
+    __arm_cp.8_1                             0x08000cd4   Number         4  realm.o(.text.showRealm)
+    [Anonymous Symbol]                       0x08000d44   Section        0  realm.o(.text.step)
+    __arm_cp.9_1                             0x08000ed4   Number         4  realm.o(.text.step)
+    __arm_cp.9_5                             0x08000f30   Number         4  realm.o(.text.step)
+    __arm_cp.9_6                             0x08000f34   Number         4  realm.o(.text.step)
+    __arm_cp.9_7                             0x08000f38   Number         4  realm.o(.text.step)
+    __arm_cp.9_8                             0x08000f3c   Number         4  realm.o(.text.step)
+    __arm_cp.9_9                             0x08000f40   Number         4  realm.o(.text.step)
+    __arm_cp.9_10                            0x08000f44   Number         4  realm.o(.text.step)
+    .text_divfast                            0x08000f48   Section      502  aeabi_sdivfast.o(.text_divfast)
+    WeaponDamage                             0x0800113e   Data          16  realm.o(.rodata.cst16)
+    .L.str.42                                0x0800114e   Data          31  realm.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x0800114e   Section        0  realm.o(.rodata.str1.1)
+    .L.str.20                                0x0800116a   Data           3  realm.o(.rodata.str1.1)
+    .L.str.33                                0x0800116d   Data          13  realm.o(.rodata.str1.1)
+    .L.str.11                                0x0800117a   Data          39  realm.o(.rodata.str1.1)
+    .L.str.30                                0x080011a1   Data          11  realm.o(.rodata.str1.1)
+    .L.str.8                                 0x080011ac   Data          25  realm.o(.rodata.str1.1)
+    .L.str.46                                0x080011c5   Data           6  realm.o(.rodata.str1.1)
+    .L.str.45                                0x080011cb   Data           4  realm.o(.rodata.str1.1)
+    .L.str.32                                0x080011cf   Data          18  realm.o(.rodata.str1.1)
+    .L.str.13                                0x080011e1   Data          29  realm.o(.rodata.str1.1)
+    .L.str.47                                0x080011fe   Data           6  realm.o(.rodata.str1.1)
+    .L.str.36                                0x08001204   Data          29  realm.o(.rodata.str1.1)
+    .L.str.35                                0x08001221   Data          37  realm.o(.rodata.str1.1)
+    .L.str.9                                 0x08001246   Data          39  realm.o(.rodata.str1.1)
+    .L.str.10                                0x0800126d   Data          29  realm.o(.rodata.str1.1)
+    .L.str.12                                0x0800128a   Data          39  realm.o(.rodata.str1.1)
+    .L.str.44                                0x080012b1   Data           6  realm.o(.rodata.str1.1)
     prbs.shift_register                      0x20000000   Data           4  realm.o(.data.prbs.shift_register)
     [Anonymous Symbol]                       0x20000000   Section        0  realm.o(.data.prbs.shift_register)
     .bss                                     0x20000008   Section       96  libspace.o(.bss)
@@ -640,18 +641,18 @@ Image Symbol Table
     prbs                                     0x080008a5   Thumb Code    56  realm.o(.text.prbs)
     printDecimal                             0x080008dd   Thumb Code    54  stm32l031lib.o(.text.printDecimal)
     random                                   0x08000913   Thumb Code    20  realm.o(.text.random)
-    runGame                                  0x08000929   Thumb Code   384  realm.o(.text.runGame)
-    setHealth                                0x08000aa9   Thumb Code    14  realm.o(.text.setHealth)
-    setStrength                              0x08000ab7   Thumb Code    10  realm.o(.text.setStrength)
-    showGameMessage                          0x08000ac1   Thumb Code    28  realm.o(.text.showGameMessage)
-    showHelp                                 0x08000add   Thumb Code   152  realm.o(.text.showHelp)
-    showPlayer                               0x08000b75   Thumb Code   236  realm.o(.text.showPlayer)
-    showRealm                                0x08000c61   Thumb Code   224  realm.o(.text.showRealm)
-    step                                     0x08000d41   Thumb Code   516  realm.o(.text.step)
-    __aeabi_uidiv                            0x08000f45   Thumb Code    68  aeabi_sdivfast.o(.text_divfast)
-    __aeabi_idiv                             0x08000f89   Thumb Code   434  aeabi_sdivfast.o(.text_divfast)
-    Region$$Table$$Base                      0x080012b4   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080012d4   Number         0  anon$$obj.o(Region$$Table)
+    runGame                                  0x08000929   Thumb Code   388  realm.o(.text.runGame)
+    setHealth                                0x08000aad   Thumb Code    14  realm.o(.text.setHealth)
+    setStrength                              0x08000abb   Thumb Code    10  realm.o(.text.setStrength)
+    showGameMessage                          0x08000ac5   Thumb Code    28  realm.o(.text.showGameMessage)
+    showHelp                                 0x08000ae1   Thumb Code   152  realm.o(.text.showHelp)
+    showPlayer                               0x08000b79   Thumb Code   236  realm.o(.text.showPlayer)
+    showRealm                                0x08000c65   Thumb Code   224  realm.o(.text.showRealm)
+    step                                     0x08000d45   Thumb Code   516  realm.o(.text.step)
+    __aeabi_uidiv                            0x08000f49   Thumb Code    68  aeabi_sdivfast.o(.text_divfast)
+    __aeabi_idiv                             0x08000f8d   Thumb Code   434  aeabi_sdivfast.o(.text_divfast)
+    Region$$Table$$Base                      0x080012b8   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x080012d8   Number         0  anon$$obj.o(Region$$Table)
     __libspace_start                         0x20000008   Data          96  libspace.o(.bss)
     __temporary_stack_top$libspace           0x20000068   Data           0  libspace.o(.bss)
 
@@ -663,9 +664,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000165
 
-  Load Region LR_1 (Base: 0x08000000, Size: 0x000012d8, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x08000000, Size: 0x000012dc, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000012d4, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000012d8, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -727,56 +728,56 @@ Memory Map of the image
     0x08000206   0x08000206   0x00000000   Code   RO          243    .text               c_p.l(indicate_semi.o)
     0x08000206   0x08000206   0x00000002   PAD
     0x08000208   0x08000208   0x00000050   Code   RO           95    .text.SystemInit    system_stm32l0xx.o
-    0x08000258   0x08000258   0x0000010c   Code   RO           61    .text.addWeapon     realm.o
-    0x08000364   0x08000364   0x000002d0   Code   RO           55    .text.doChallenge   realm.o
+    0x08000258   0x08000258   0x0000010c   Code   RO           63    .text.addWeapon     realm.o
+    0x08000364   0x08000364   0x000002d0   Code   RO           57    .text.doChallenge   realm.o
     0x08000634   0x08000634   0x00000010   Code   RO           14    .text.egetchar      stm32l031lib.o
     0x08000644   0x08000644   0x00000010   Code   RO           12    .text.eputchar      stm32l031lib.o
     0x08000654   0x08000654   0x0000001c   Code   RO           16    .text.eputs         stm32l031lib.o
     0x08000670   0x08000670   0x0000000c   Code   RO           43    .text.getUserInput  realm.o
     0x0800067c   0x0800067c   0x00000028   Code   RO           65    .text.getWeaponName  realm.o
     0x080006a4   0x080006a4   0x00000024   Code   RO            8    .text.initClock     stm32l031lib.o
-    0x080006c8   0x080006c8   0x000000b0   Code   RO           47    .text.initPlayer    realm.o
-    0x08000778   0x08000778   0x0000007c   Code   RO           45    .text.initRealm     realm.o
+    0x080006c8   0x080006c8   0x000000b0   Code   RO           49    .text.initPlayer    realm.o
+    0x08000778   0x08000778   0x0000007c   Code   RO           47    .text.initRealm     realm.o
     0x080007f4   0x080007f4   0x00000094   Code   RO           10    .text.initSerial    stm32l031lib.o
     0x08000888   0x08000888   0x0000000a   Code   RO           28    .text.main          main.o
     0x08000892   0x08000892   0x00000012   Code   RO            2    .text.pinMode       stm32l031lib.o
     0x080008a4   0x080008a4   0x00000038   Code   RO           69    .text.prbs          realm.o
     0x080008dc   0x080008dc   0x00000036   Code   RO           18    .text.printDecimal  stm32l031lib.o
-    0x08000912   0x08000912   0x00000014   Code   RO           63    .text.random        realm.o
+    0x08000912   0x08000912   0x00000014   Code   RO           45    .text.random        realm.o
     0x08000926   0x08000926   0x00000002   PAD
-    0x08000928   0x08000928   0x00000180   Code   RO           37    .text.runGame       realm.o
-    0x08000aa8   0x08000aa8   0x0000000e   Code   RO           57    .text.setHealth     realm.o
-    0x08000ab6   0x08000ab6   0x0000000a   Code   RO           59    .text.setStrength   realm.o
-    0x08000ac0   0x08000ac0   0x0000001c   Code   RO           41    .text.showGameMessage  realm.o
-    0x08000adc   0x08000adc   0x00000098   Code   RO           39    .text.showHelp      realm.o
-    0x08000b74   0x08000b74   0x000000ec   Code   RO           49    .text.showPlayer    realm.o
-    0x08000c60   0x08000c60   0x000000e0   Code   RO           51    .text.showRealm     realm.o
-    0x08000d40   0x08000d40   0x00000204   Code   RO           53    .text.step          realm.o
-    0x08000f44   0x08000f44   0x000001f6   Code   RO          113    .text_divfast       c_p.l(aeabi_sdivfast.o)
-    0x0800113a   0x0800113a   0x00000010   Data   RO           75    .rodata.cst16       realm.o
-    0x0800114a   0x0800114a   0x00000169   Data   RO           74    .rodata.str1.1      realm.o
-    0x080012b3   0x080012b3   0x00000001   PAD
-    0x080012b4   0x080012b4   0x00000020   Data   RO          296    Region$$Table       anon$$obj.o
+    0x08000928   0x08000928   0x00000184   Code   RO           37    .text.runGame       realm.o
+    0x08000aac   0x08000aac   0x0000000e   Code   RO           59    .text.setHealth     realm.o
+    0x08000aba   0x08000aba   0x0000000a   Code   RO           61    .text.setStrength   realm.o
+    0x08000ac4   0x08000ac4   0x0000001c   Code   RO           41    .text.showGameMessage  realm.o
+    0x08000ae0   0x08000ae0   0x00000098   Code   RO           39    .text.showHelp      realm.o
+    0x08000b78   0x08000b78   0x000000ec   Code   RO           51    .text.showPlayer    realm.o
+    0x08000c64   0x08000c64   0x000000e0   Code   RO           53    .text.showRealm     realm.o
+    0x08000d44   0x08000d44   0x00000204   Code   RO           55    .text.step          realm.o
+    0x08000f48   0x08000f48   0x000001f6   Code   RO          113    .text_divfast       c_p.l(aeabi_sdivfast.o)
+    0x0800113e   0x0800113e   0x00000010   Data   RO           75    .rodata.cst16       realm.o
+    0x0800114e   0x0800114e   0x00000169   Data   RO           74    .rodata.str1.1      realm.o
+    0x080012b7   0x080012b7   0x00000001   PAD
+    0x080012b8   0x080012b8   0x00000020   Data   RO          296    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x080012d4, Size: 0x00000004, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x080012d8, Size: 0x00000004, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x080012d4   0x00000004   Data   RW           76    .data.prbs.shift_register  realm.o
+    0x20000000   0x080012d8   0x00000004   Data   RW           76    .data.prbs.shift_register  realm.o
 
 
-    Execution Region ER_ZI (Exec base: 0x20000008, Load base: 0x080012d8, Size: 0x000008e0, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000008, Load base: 0x080012dc, Size: 0x000008e0, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000008        -       0x00000060   Zero   RW          162    .bss                c_p.l(libspace.o)
     0x20000068        -       0x00000001   Zero   RW           71    .bss.GameStarted    realm.o
-    0x20000069   0x080012d8   0x00000003   PAD
+    0x20000069   0x080012dc   0x00000003   PAD
     0x2000006c        -       0x00000001   Zero   RW           77    .bss.prbs.busy      realm.o
     0x2000006d        -       0x0000001d   Zero   RW           73    .bss.thePlayer      realm.o
     0x2000008a        -       0x00000258   Zero   RW           72    .bss.theRealm       realm.o
-    0x200002e2   0x080012d8   0x00000006   PAD
+    0x200002e2   0x080012dc   0x00000006   PAD
     0x200002e8        -       0x00000200   Zero   RW           86    HEAP                startup_stm32l031xx.o
     0x200004e8        -       0x00000400   Zero   RW           85    STACK               startup_stm32l031xx.o
 
@@ -789,13 +790,13 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
         10          0          0          0          0        424   main.o
-      2980       1232        377          4        631       7334   realm.o
+      2984       1232        377          4        631       7338   realm.o
         56         26        192          0       1536        744   startup_stm32l031xx.o
        316         24          0          0          0       3202   stm32l031lib.o
         80         16          0          0          0       2627   system_stm32l0xx.o
 
     ----------------------------------------------------------------------
-      3444       1298        602          4       2176      14331   Object Totals
+      3448       1298        602          4       2176      14335   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          2          0          1          0          9          0   (incl. Padding)
 
@@ -845,15 +846,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      4218       1314        602          4       2272      14779   Grand Totals
-      4218       1314        602          4       2272      14779   ELF Image Totals
-      4218       1314        602          4          0          0   ROM Totals
+      4222       1314        602          4       2272      14783   Grand Totals
+      4222       1314        602          4       2272      14783   ELF Image Totals
+      4222       1314        602          4          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 4820 (   4.71kB)
+    Total RO  Size (Code + RO Data)                 4824 (   4.71kB)
     Total RW  Size (RW Data + ZI Data)              2276 (   2.22kB)
-    Total ROM Size (Code + RO Data + RW Data)       4824 (   4.71kB)
+    Total ROM Size (Code + RO Data + RW Data)       4828 (   4.71kB)
 
 ==============================================================================
 
