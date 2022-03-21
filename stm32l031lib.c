@@ -2,15 +2,15 @@
 #include <stm32l031xx.h>
 #include "stm32l031lib.h"
 
+// This function writes the given Mode bits to the appropriate location for
+// the given BitNumber in the Port specified.  It leaves other bits unchanged
+// Mode values:
+// 0 : digital input
+// 1 : digital output
+// 2 : Alternative function
+// 3 : Analog input
 void pinMode(GPIO_TypeDef *Port, uint32_t BitNumber, uint32_t Mode)
 {
-	// This function writes the given Mode bits to the appropriate location for
-	// the given BitNumber in the Port specified.  It leaves other bits unchanged
-	// Mode values:
-	// 0 : digital input
-	// 1 : digital output
-	// 2 : Alternative function
-	// 3 : Analog input
 	uint32_t mode_value = Port->MODER; // read current value of Mode register 
 	Mode = Mode << (2 * BitNumber);    // There are two Mode bits per port bit so need to shift
 																	   // the mask for Mode up to the proper location
@@ -27,6 +27,27 @@ void enablePullUp(GPIO_TypeDef *Port, uint32_t BitNumber)
 		Port->PUPDR = Port->PUPDR & ~(3u << BitNumber*2); // clear pull-up bits
 		Port->PUPDR = Port->PUPDR | (1u << BitNumber*2); //  set pull-up bit
 }
+
+// Code added by Adrian Capcite
+
+// Set digital pin low
+void setPinLow(GPIO_TypeDef *Port, uint32_t BitNumber)
+{
+	Port->ODR = Port->ODR & ~(1u << BitNumber);
+}
+// Set digital pin high
+void setPinHigh(GPIO_TypeDef *Port, uint32_t BitNumber)
+{	
+	Port->ODR = Port->ODR | (1u << BitNumber);
+}
+// Outputs true if pin is low
+uint32_t readPin(GPIO_TypeDef *Port, uint32_t BitNumber)
+{
+		return ((Port->IDR & (1u << BitNumber)) != 0);
+}
+
+// END code added by Adrian Capacite
+
 void initClock()
 {
 	/* This function switches the STM32L031's clock to its 16MHz MSI clock */
@@ -35,6 +56,9 @@ void initClock()
 	while ( (RCC->CR & (1 <<2)) == 0); // wait for HSI to be ready
 	// set HSI16 as the system clock source
 	RCC->CFGR |= 1;
+	
+	SysTick->LOAD = 16000;   // 16MHz / 16000 = 1kHz
+	SysTick->CTRL = 7;       // enable systick counting and 
 }
 
 void initSerial()
@@ -77,20 +101,155 @@ void eputs(const char *String)
 		String++;
 	}
 }
+
+// ModifiedPrints decimal number to serial, removing leading 0s
 void printDecimal(uint32_t Value)
 {
-	char DecimalString[11]; // a 32 bit value can go up
-												// to about 4billion:
-												// That's 10 digits
-												// plus a null character
-	DecimalString[10] = 0; // terminate the string;
+	char DecimalString[11]; // a 32 bit value can go up to about 4 billion: That's 10 digits plus a null character
+	DecimalString[10] = 0;
 	int index = 9;
-	while(index >= 0)
+	
+	do
 	{
 		DecimalString[index]=(Value % 10) + '0';
 		Value = Value / 10;
+		
+		if (Value == 0)
+		{
+			break;
+		}
+		
 		index--;
+	} while (index >= 0);
+	eputs(&DecimalString[index]);
+}
+// TODO: Remove before submission
+void printHex(uint32_t Value)
+{
+	char HexString[11];
+	
+	HexString[10] = 0;
+	int index = 9;
+
+	while (index >= 0)
+	{
+		if (Value % 16 <= 9)
+		{
+			HexString[index] = (Value % 16) + 48;
+		}
+		else
+		{
+			HexString[index] = (Value % 16) + 55;
+		}
+		Value = Value / 16;
+		index--;		
 	}
-	eputs(DecimalString);
+	eputs(HexString);
+}
+void printBin(uint32_t Value)
+{
+	
+	char BinString[11];
+	
+	BinString[10] = 0;
+	int index = 9;
+
+	while (index >= 0)
+	{
+		BinString[index] = (Value % 2) + 48;
+		Value = Value / 2;
+		index--;		
+	}
+	eputs(BinString);
 }
 
+
+// Added code by Adrian Capacite //
+
+// Init pins
+void initPins(void)
+{
+	
+	RCC->IOPENR |= 1;
+	RCC->IOPENR |= 2;
+
+	initKeypad(keypadPins);
+	initRGBLED(ledStatusPins);
+	pinMode(speakerPin.Port, speakerPin.BitNumber, 1); // Init speaker pin
+	
+
+}
+
+// Initialises keypad pins
+void initKeypad(struct Pin_Matrix pins)
+{
+	for (int i = 0; i < KEYPAD_SIZE; i++)
+	{
+		pinMode(pins.row[i].Port, pins.row[i].BitNumber, 1);
+		pinMode(pins.col[i].Port, pins.col[i].BitNumber, 0);
+		enablePullUp(pins.col[i].Port, pins.col[i].BitNumber);
+	}
+}
+// Reads 16 key keypad
+uint32_t getKeypadValue(struct Pin_Matrix pins)
+{
+	uint32_t keyVal = 0;
+	for (uint32_t i = 0; i < KEYPAD_SIZE; i++)
+	{
+		// Set all rows high and current low
+		for (uint32_t j = 0; j < KEYPAD_SIZE; j++)
+		{
+			setPinHigh(pins.row[j].Port,pins.row[j].BitNumber);
+		}
+		setPinLow(pins.row[i].Port,pins.row[i].BitNumber);
+		// Check each col if they are low
+		for (uint32_t j = 0; j < KEYPAD_SIZE; j++)
+		{
+			if(readPin(pins.col[j].Port, pins.col[j].BitNumber) == 0)
+			{
+				keyVal = keyVal | (1 << i) | (1 << (4 + j));
+			}
+		}
+	}
+	return keyVal;
+}
+
+// Initialise RGB LED
+void initRGBLED(struct Pin_RGBLED pins)
+{
+	pinMode(pins.red.Port, pins.red.BitNumber, 1);
+	pinMode(pins.green.Port, pins.green.BitNumber, 1);
+	pinMode(pins.blue.Port, pins.blue.BitNumber, 1);
+}
+// Sets RGB LED value
+void setRGBLED(uint32_t RGB, struct Pin_RGBLED pins)
+{
+	// Red
+	if ((RGB & 0x0000ff) == 0x0000ff)
+	{
+		setPinHigh(pins.red.Port, pins.red.BitNumber);
+	}
+	else
+	{
+		setPinLow(pins.red.Port, pins.red.BitNumber);
+	}
+	// Green
+	if ((RGB & 0x00ff00) == 0x00ff00)
+	{
+		setPinHigh(pins.green.Port, pins.green.BitNumber);
+	}
+	else
+	{
+		setPinLow(pins.green.Port, pins.green.BitNumber);
+	}
+	// Blue
+	if ((RGB & 0xff0000) == 0xff0000)
+	{
+		setPinHigh(pins.blue.Port, pins.blue.BitNumber);
+	}
+	else
+	{
+		setPinLow(pins.blue.Port, pins.blue.BitNumber);
+	}
+}
+// END Added code by Adrian Capacite

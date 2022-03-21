@@ -458,24 +458,27 @@ void initPlayer(tPlayer *Player,tRealm *Realm)
 }
 void showPlayer(tPlayer *Player)
 {
-	eputs("\r\nName: ");
+	eputs("\r\nName:\t\t");
 	eputs(Player->name);
-	eputs("health: ");
+	eputs("\r\nhealth:\t\t");
 	printDecimal(Player->health);
-	eputs("\r\nstrength: ");
+	eputs("\r\nstrength:\t");
 	printDecimal(Player->strength);
-	eputs("\r\nmagic: ");
+	eputs("\r\nmagic:\t\t");
 	printDecimal(Player->magic);
-	eputs("\r\nwealth: ");
+	eputs("\r\nwealth:\t\t");
 	printDecimal(Player->wealth);	
-	eputs("\r\nLocation : ");
+	eputs("\r\nLocation:\t[ ");
 	printDecimal(Player->x);
-	eputs(" , ");
-	printDecimal(Player->y);	
-	eputs("\r\nWeapon1 : ");
+	eputs(", ");
+	printDecimal(Player->y);
+	eputs(" ]");
+	eputs("\r\nWeapon1:\t< ");
 	eputs(getWeaponName(Player->Weapon1));
-	eputs(" Weapon2 : ");
+	eputs(" >");
+	eputs("\r\nWeapon2:\t< ");
 	eputs(getWeaponName(Player->Weapon2));
+	eputs(" >");
 }
 void initRealm(tRealm *Realm)
 {
