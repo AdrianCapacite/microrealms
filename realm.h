@@ -2,6 +2,7 @@
 #define __REALM_H
 
 // realm.h
+#include "stm32l031lib.h"
 // Some game constants
 #define MAP_WIDTH 30
 #define MAP_HEIGHT 20
@@ -28,9 +29,10 @@ typedef struct {
 // Function prototypes
 unsigned prbs(void);
 unsigned random(unsigned range);
+void randomize(void);
 void showHelp(void);
 void showGameMessage(char *Msg);
-char getUserInput(void);
+char getUserInput(uint8_t inputMode);
 void runGame(void);
 void initRealm(tRealm *Realm);
 void showRealm(tRealm *Realm,tPlayer *thePlayer);

@@ -1,5 +1,5 @@
-./objects/realm.o: realm.c realm.h stm32l031lib.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
+./objects/music.o: music.c \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h stm32l031lib.h \
   C:\Users\Adrian\ Capacite\AppData\Local\Arm\Packs\Keil\STM32L0xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32L0xx\Include\stm32l031xx.h \
   C:\Users\Adrian\ Capacite\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\core_cm0plus.h \
   C:\Users\Adrian\ Capacite\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_version.h \
@@ -8,4 +8,4 @@
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\arm_compat.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\arm_acle.h \
   C:\Users\Adrian\ Capacite\AppData\Local\Arm\Packs\Keil\STM32L0xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32L0xx\Include\system_stm32l0xx.h \
-  music.h sprites.h
+  music.h

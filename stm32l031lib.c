@@ -18,9 +18,25 @@ void pinMode(GPIO_TypeDef *Port, uint32_t BitNumber, uint32_t Mode)
 	mode_value = mode_value | Mode; // set new bits
 	Port->MODER = mode_value; // write back to port mode register
 }
+void Delay_Handler(void)
+{
+	if (delayDuration > 0)
+	{
+		delayDuration--;
+	}
+}
+// Delay in ms
+// Makes adjustments based on SysTick->LOAD, even when it changes mid delay
 void delay(volatile uint32_t dly)
 {
-	while(dly--);
+	while (dly > 100) 
+	{
+		delayDuration = (uint32_t)(100 * (CPU_FREQ/1000.0) / SysTick->LOAD);
+		while(delayDuration>0);
+		dly -= 100;
+	}
+	delayDuration = (uint32_t)((dly%100) * (CPU_FREQ/1000.0) / SysTick->LOAD);
+	while(delayDuration>0);
 }
 void enablePullUp(GPIO_TypeDef *Port, uint32_t BitNumber)
 {
@@ -44,6 +60,32 @@ void setPinHigh(GPIO_TypeDef *Port, uint32_t BitNumber)
 uint32_t readPin(GPIO_TypeDef *Port, uint32_t BitNumber)
 {
 		return ((Port->IDR & (1u << BitNumber)) != 0);
+}
+
+
+
+// Initialises the ADC
+void ADCBegin()
+{
+	RCC->APB2ENR |= (1u << 9); // Turn on ADC 
+	RCC->IOPENR |= 1; // enable GPIOA
+	pinMode(GPIOA,7,3); // Make GPIOA_7 an analogue input
+
+	ADC1->CR = 0; // dis|able ADC before making changes
+	ADC1->CR |= (1u << 28); // turn on the voltage regulator
+	ADC1->CR |= (1u << 31); // start calibration
+	while ( (ADC1->CR & (1u << 31)) != 0); // Wait for calibration to complete.
+	ADC1->CHSELR = (1 << 7); // select channel4  
+	ADC1->CR |= 1; // enable the ADC
+	
+}
+
+// Reads value from ADC
+uint16_t ADCRead(void)
+{
+	ADC1->CR |= (1 << 2); // start a conversion
+	while ( (ADC1->CR & (1 << 2)) != 0); // Wait for conversion to complete.
+	return (uint16_t)ADC1->DR;
 }
 
 // END code added by Adrian Capacite
@@ -123,61 +165,18 @@ void printDecimal(uint32_t Value)
 	} while (index >= 0);
 	eputs(&DecimalString[index]);
 }
-// TODO: Remove before submission
-void printHex(uint32_t Value)
-{
-	char HexString[11];
-	
-	HexString[10] = 0;
-	int index = 9;
-
-	while (index >= 0)
-	{
-		if (Value % 16 <= 9)
-		{
-			HexString[index] = (Value % 16) + 48;
-		}
-		else
-		{
-			HexString[index] = (Value % 16) + 55;
-		}
-		Value = Value / 16;
-		index--;		
-	}
-	eputs(HexString);
-}
-void printBin(uint32_t Value)
-{
-	
-	char BinString[11];
-	
-	BinString[10] = 0;
-	int index = 9;
-
-	while (index >= 0)
-	{
-		BinString[index] = (Value % 2) + 48;
-		Value = Value / 2;
-		index--;		
-	}
-	eputs(BinString);
-}
-
-
 // Added code by Adrian Capacite //
 
 // Init pins
 void initPins(void)
 {
-	
-	RCC->IOPENR |= 1;
-	RCC->IOPENR |= 2;
+	RCC->IOPENR |= (1<<0); // Enable Port A
+	RCC->IOPENR |= (1<<1); // Enable Port B
 
-	initKeypad(keypadPins);
-	initRGBLED(ledStatusPins);
-	pinMode(speakerPin.Port, speakerPin.BitNumber, 1); // Init speaker pin
-	
-
+	initKeypad(c_keypadPins);
+	initRGBLED(c_ledStatusPins);
+	pinMode(c_ledHeartPin.Port, c_ledHeartPin.BitNumber, 1); // Init speaker pin
+	pinMode(c_speakerPin.Port, c_speakerPin.BitNumber, 1); // Init speaker pin
 }
 
 // Initialises keypad pins
@@ -191,26 +190,36 @@ void initKeypad(struct Pin_Matrix pins)
 	}
 }
 // Reads 16 key keypad
-uint32_t getKeypadValue(struct Pin_Matrix pins)
-{
-	uint32_t keyVal = 0;
-	for (uint32_t i = 0; i < KEYPAD_SIZE; i++)
+uint8_t getKeypadValue(struct Pin_Matrix pins)
+{	
+	uint8_t keyVal = 0;
+	do 
 	{
-		// Set all rows high and current low
-		for (uint32_t j = 0; j < KEYPAD_SIZE; j++)
+		for (uint8_t i = 0; i < KEYPAD_SIZE; i++)
 		{
-			setPinHigh(pins.row[j].Port,pins.row[j].BitNumber);
-		}
-		setPinLow(pins.row[i].Port,pins.row[i].BitNumber);
-		// Check each col if they are low
-		for (uint32_t j = 0; j < KEYPAD_SIZE; j++)
-		{
-			if(readPin(pins.col[j].Port, pins.col[j].BitNumber) == 0)
+			// Set all rows high and current low
+			for (uint8_t j = 0; j < KEYPAD_SIZE; j++)
 			{
-				keyVal = keyVal | (1 << i) | (1 << (4 + j));
+				setPinHigh(pins.row[j].Port,pins.row[j].BitNumber);
+			}
+			setPinLow(pins.row[i].Port,pins.row[i].BitNumber);
+			// Check each col if they are low
+			for (uint8_t j = 0; j < KEYPAD_SIZE; j++)
+			{
+				if(readPin(pins.col[j].Port, pins.col[j].BitNumber) == 0)
+				{
+					keyVal = keyVal | (1u << i) | (1u << (4u + j));
+				}
 			}
 		}
-	}
+		if (keyVal == 0)
+		{
+			delay(500);
+		}
+	} while (keyVal == 0);
+	eputs("KeyVal: ");
+	printDecimal(keyVal);
+	eputs("\r\n");
 	return keyVal;
 }
 

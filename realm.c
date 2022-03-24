@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "realm.h"
 #include "stm32l031lib.h"
+#include "music.h"
+#include "sprites.h"
 // Find types: h(ealth),s(trength),m(agic),g(old),w(eapon)
 static const char FindTypes[]={'h','s','m','g','w'};
 
@@ -44,30 +46,38 @@ __attribute__((noreturn)) void runGame(void)
 {
 	char ch;
 	
+	playSFX(musicLinksMemories, MUSIC_LINKS_MEMORIES_SIZE);
+	randomize();
 	eputs("MicroRealms on the STM32L031\r\n");	
+	eputs(SPRITE_TITLE);
 	showHelp();		
 	while(GameStarted == 0)
 	{
 		
-		showGameMessage("Press S to start a new game\r\n");
-		ch = getUserInput();			
+		showGameMessage("Press M on the keypad to start a new game\r\n");
+		ch = getUserInput(1);		
+		playSFX(SFXInput, SFX_INPUT_SIZE);	
 		
-		if ( (ch == 'S') || (ch == 's') )
+		if ( (ch == 'M') || (ch == 'm') )
 			GameStarted = 1;
 	}
-	
+
 	initRealm(&theRealm);	
 	initPlayer(&thePlayer,&theRealm);
 	showPlayer(&thePlayer);
 	showRealm(&theRealm,&thePlayer);
 	showGameMessage("Press H for help");
 	
+	playMusic(musicScatteredAndLost,MUSIC_SCATTERED_AND_LOST_SIZE);
 	while (1)
 	{
-		ch = getUserInput();
+		randomize();
+		setRGBLED(0x00ff00, c_ledStatusPins);
+		ch = getUserInput(1);
 		ch = ch | 32; // enforce lower case
 		switch (ch) {
 			case 'h' : {
+				playSFX(SFXInput, SFX_INPUT_SIZE);
 				showHelp();
 				break;
 			}
@@ -80,7 +90,6 @@ __attribute__((noreturn)) void runGame(void)
 				showGameMessage("South");
 				step('s',&thePlayer,&theRealm);
 				break;
-
 			}
 			case 'e' : {
 				showGameMessage("East");
@@ -92,7 +101,8 @@ __attribute__((noreturn)) void runGame(void)
 				step('w',&thePlayer,&theRealm);
 				break;
 			}
-			case '#' : {		
+			case 'm' : {		
+				playSFX(SFXInput, SFX_INPUT_SIZE);
 				if (thePlayer.wealth)		
 				{
 					showRealm(&theRealm,&thePlayer);
@@ -102,9 +112,13 @@ __attribute__((noreturn)) void runGame(void)
 					showGameMessage("No gold!");
 				break;
 			}
-			case 'p' : {				
+			case 'p' : {	
+				playSFX(SFXInput, SFX_INPUT_SIZE);			
 				showPlayer(&thePlayer);
 				break;
+			}
+			default: {
+				playSFX(SFXBlocked, SFX_BLOCKED_SIZE);
 			}
 		} // end switch
 	} // end while
@@ -119,31 +133,60 @@ void step(char Direction,tPlayer *Player,tRealm *Realm)
 		case 'n' :
 		{
 			if (new_y > 0)
+			{
 				new_y--;
+				playSFX(SFXBeep, SFX_BEEP_SIZE);
+			}
+			else
+			{
+				playSFX(SFXBlocked, SFX_BLOCKED_SIZE);
+			}
 			break;
 		}
 		case 's' :
 		{
 			if (new_y < MAP_HEIGHT-1)
+			{
 				new_y++;
+				playSFX(SFXBeep, SFX_BEEP_SIZE);
+			}
+			else
+			{
+				playSFX(SFXBlocked, SFX_BLOCKED_SIZE);
+			}
 			break;
 		}
 		case 'e' :
 		{
 			if (new_x <  MAP_WIDTH-1)
+			{
 				new_x++;
+				playSFX(SFXBeep, SFX_BEEP_SIZE);
+			}
+			else
+			{
+				playSFX(SFXBlocked, SFX_BLOCKED_SIZE);
+			}
 			break;
 		}
 		case 'w' :
 		{
 			if (new_x > 0)
+			{
 				new_x--;
+				playSFX(SFXBeep, SFX_BEEP_SIZE);
+			}
+			else
+			{
+				playSFX(SFXBlocked, SFX_BLOCKED_SIZE);
+			}
 			break;
 		}		
 	}
 	AreaContents = Realm->map[new_y][new_x];
 	if ( AreaContents == '*')
 	{
+		playSFX(SFXBlocked, SFX_BLOCKED_SIZE);
 		showGameMessage("A rock blocks your path.");
 		return;
 	}
@@ -206,6 +249,7 @@ void step(char Direction,tPlayer *Player,tRealm *Realm)
 		}
 		case 'X' : {
 			// Player landed on the exit
+			playSFX(SFXSecret,SFX_SECRET_SIZE);
 			eputs("A door! You exit into a new realm");
 			setHealth(Player,100); // maximize health
 			initRealm(&theRealm);
@@ -217,12 +261,13 @@ void step(char Direction,tPlayer *Player,tRealm *Realm)
 }
 int doChallenge(tPlayer *Player,int BadGuyIndex)
 {
+	playMusic(musicMortalCombat, MUSIC_MORTAL_COMBAT_SIZE);
 	char ch;
 	char Damage;
 	const byte *dmg;
 	int BadGuyHealth = 100;
 	eputs("Press F to fight");
-	ch = getUserInput() | 32; // get user input and force lower case
+	ch = getUserInput(1) | 32; // get user input and force lower case
 	if (ch == 'f')
 	{
 		eputs("\r\nChoose action");
@@ -247,7 +292,7 @@ int doChallenge(tPlayer *Player,int BadGuyIndex)
 				eputs(getWeaponName(Player->Weapon2));
 			}
 			eputs("(P)unch");
-			ch = getUserInput();
+			ch = getUserInput(1);
 			switch (ch)
 			{
 				case 'i':
@@ -322,6 +367,7 @@ int doChallenge(tPlayer *Player,int BadGuyIndex)
 		}
 		else
 		{ // You won!
+		playMusic(musicLinksMemories, MUSIC_LINKS_MEMORIES_SIZE);
 			Player->wealth = (uint8_t)(50 + random(50));			
 			showGameMessage("You win! Their gold is yours");			
 			return 1;
@@ -364,7 +410,7 @@ int addWeapon(tPlayer *Player, int Weapon)
 		showPlayer(Player);
 		eputs("You already have two weapons\r\n");		
 		eputs("(1) drop Weapon1, (2) for Weapon2, (0) skip");
-		c = getUserInput();
+		c = getUserInput(1);
 		eputchar(c);
 		switch(c)
 		{
@@ -427,10 +473,11 @@ void initPlayer(tPlayer *Player,tRealm *Realm)
 	byte x,y;
 	char ch=0;
 	// Initialize the player's attributes
+	setRGBLED(0x00ffff, c_ledStatusPins);
 	eputs("Enter the player's name: ");
 	while ( (index < MAX_NAME_LEN) && (ch != '\n') && (ch != '\r'))
 	{
-		ch = getUserInput();
+		ch = getUserInput(0);
 		if ( ch > '0' ) // strip conrol characters
 		{
 			
@@ -533,7 +580,7 @@ void showHelp()
 
 	eputs("Help\r\n");
 	eputs("N,S,E,W : go North, South, East, West\r\n");
-	eputs("# : show map (cost: 1 gold piece)\r\n");
+	eputs("M : show map (cost: 1 gold piece)\r\n");
 	eputs("(H)elp\r\n");
 	eputs("(P)layer details\r\n");
 	
@@ -544,12 +591,97 @@ void showGameMessage(char *Msg)
 	eputs(Msg);
 	eputs("\r\nReady\r\n");	
 }
-char getUserInput()
+// Gets user input
+// inputMode:
+// 		0 -> Computer keyboard input
+//		1 -> Keypad input
+char getUserInput(uint8_t inputMode)
 {
 	char ch = 0;
+	uint8_t val = 0;		
+	inputMode = 0; // force keyboard
+	if (inputMode == 0)
+	{
+		// Computer keyboard input
+		while (ch == 0)
+		{
+			ch = egetchar();
+		}
+	}
+	else
+	{
+		// Microprocessor keypad input
+		val = getKeypadValue(c_keypadPins);
+		switch (val)
+		{
+			case 17:
+			{
+				ch = '0';
+				break;
+			}
+			case 33:
+			{
+				ch = '1';
+				break;
+			}
+			case 65:
+			{
+				ch = '2';
+				break;
+			}
+			case 129:
+			{
+				ch = 'p';
+				break;
+			}
+			case 34:
+			{
+				ch = 's';
+				break;
+			}
+			case 130:
+			{
+				ch = 'l';
+				break;
+			}
+			case 20:
+			{
+				ch = 'w';
+				break;
+			}
+			case 36:
+			{
+				ch = 'm';
+				break;
+			}
+			case 68:
+			{
+				ch = 'e';
+				break;
+			}
+			case 132:
+			{
+				ch = 'f';
+				break;
+			}
+			case 24:
+			{
+				ch = 'h';
+				break;
+			}
+			case 40:
+			{
+				ch = 'n';
+				break;
+			}
+			case 136:
+			{
+				ch = 'i';
+				break;
+			}
+		}
+	}
 	
-	while (ch == 0)
-		ch = egetchar();
 	return ch;
 }
 unsigned random(unsigned range)
@@ -568,11 +700,11 @@ void zap()
 {
 
 }
+static unsigned long shift_register=0xa5a5a5a5; // Shift register in global for randomize
 uint32_t prbs()
 {
 	// This is an unverified 31 bit PRBS generator
 	// It should be maximum length but this has not been verified
-	static unsigned long shift_register=0xa5a5a5a5;
 	unsigned long new_bit=0;
 	static int busy=0; // need to prevent re-entrancy here
 	if (!busy)
@@ -586,4 +718,16 @@ uint32_t prbs()
 		busy=0;
 	}
 	return shift_register & 0x7ffffff; // return 31 LSB's
+}
+void randomize()
+{
+	shift_register = 0;
+	ADCBegin();
+	while(shift_register == 0)
+	{
+		for (int i=0; i < 10; i++)
+		{
+			shift_register += ADCRead();
+		}
+	}
 }

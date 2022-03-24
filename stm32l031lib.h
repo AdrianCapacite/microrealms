@@ -5,13 +5,15 @@
             Keypad pin:  C4  C3  C2  C1  R1  R2  R3  R4
             Pin label:   D2  D3  D4  D5  D6  D9  D10 D11
             Actual Pin:  A12 B0  B7  B6  B1  A8  A11 B5
+        Analogue 
     Pin outs:
         Health LED: A0 -> A0
         Status RGB LED:
             LED pin:    Red   Green Blue
             Pin label:  A1    A2    A3  
             Actual Pin: A1    A3    A4
-        Speaker: A4 -> A5
+        Speaker: D12 -> B7
+
     Author: Adrian Thomas Capacite
     Date: 14 / 03 / 2022
 */
@@ -22,7 +24,7 @@
 #include <stm32l031xx.h>
 #define enable_interrupts() __asm(" cpsie i ")
 #define disable_interrupts() __asm(" cpsie d ")
-#define CPU_FREQ 16000000
+#define CPU_FREQ 15999999
 // Pin constants
 #define KEYPAD_SIZE 4
 #define RGB_PIN_COUNT 3
@@ -50,6 +52,7 @@ struct Pin_RGBLED
 };
 
 void pinMode(GPIO_TypeDef *Port, uint32_t BitNumber, uint32_t Mode);
+void Delay_Handler(void);
 void delay(volatile uint32_t dly);
 void enablePullUp(GPIO_TypeDef *Port, uint32_t BitNumber);
 
@@ -57,25 +60,26 @@ void setPinLow(GPIO_TypeDef *Port, uint32_t BitNumber);
 void setPinHigh(GPIO_TypeDef *Port, uint32_t BitNumber);
 uint32_t readPin(GPIO_TypeDef *Port, uint32_t BitNumber);
 
+void ADCBegin(void);
+uint16_t ADCRead(void);
+
 void initClock(void);
 void initSerial(void);
 void eputchar(char c);
 char egetchar(void);
 void eputs(const char *String);
 void printDecimal(uint32_t Value);
-void printBin(uint32_t Value);
-void printHex(uint32_t Value);
 
 void initPins(void);
 
 void initKeypad(struct Pin_Matrix pins);
-uint32_t getKeypadValue(struct Pin_Matrix pins);
+uint8_t getKeypadValue(struct Pin_Matrix pins);
 
 void initRGBLED(struct Pin_RGBLED);
 void setRGBLED(uint32_t RGB, struct Pin_RGBLED pins);
 
-// Pin values constants
-const static struct Pin_Matrix keypadPins = {
+// Pin constants
+const static struct Pin_Matrix c_keypadPins = {
     // Rows
     {
         {GPIOB,1},
@@ -91,9 +95,13 @@ const static struct Pin_Matrix keypadPins = {
         {GPIOA,12}
     }
 };
-const static struct GPIO_Pin ledHeartPin = {GPIOA,0};
-const static struct Pin_RGBLED ledStatusPins = {
+const static struct GPIO_Pin c_ledHeartPin = {GPIOA,0};
+const static struct Pin_RGBLED c_ledStatusPins = {
     {GPIOA,1},{GPIOA,3},{GPIOA,4}
     };
-const static struct GPIO_Pin speakerPin = {GPIOA,5};
+const static struct GPIO_Pin c_speakerPin = {GPIOB,4};
+// END Pin constants
+
+static volatile uint32_t delayDuration = 0;
+
 #endif
