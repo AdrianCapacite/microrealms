@@ -50,8 +50,15 @@ __attribute__((noreturn)) void runGame(void)
 	playSFX(musicTitle, MUSIC_TITLE_SIZE);
 	randomize();
 
-	eputs("MicroRealms on the STM32L031\r\n");	
-	eputs(SPRITE_TITLE);
+	eputs(
+		"\n"
+		"MicroRealms on the STM32L031\r\n"
+		"\n"
+		SPRITE_TITLE
+		"\n"
+		"By Adrian Capacite\n"
+		);	
+
 	showHelp();		
 	while(GameStarted == 0)
 	{
@@ -64,19 +71,21 @@ __attribute__((noreturn)) void runGame(void)
 			GameStarted = 1;
 	}
 
+
 	initRealm(&theRealm);	
 	initPlayer(&thePlayer,&theRealm);
+	setRGBLED(0x00ff00, c_ledStatusPins);
+	playMusic(musicExplore,MUSIC_EXPLORE_SIZE);
 	showPlayer(&thePlayer);
 	showRealm(&theRealm,&thePlayer);
 	showGameMessage("Press H for help");
 	
-	playMusic(musicExplore,MUSIC_EXPLORE_SIZE);
 	while (1)
 	{
 		if (thePlayer.health < 25)
 		{
 			playSFX(SFXLowHealth,SFX_LOW_HEALTH_SIZE);
-			setRGBLED(0x00ff00, c_ledStatusPins);
+			setRGBLED(0x00ffff, c_ledStatusPins);
 		}
 		else
 		{
@@ -92,22 +101,22 @@ __attribute__((noreturn)) void runGame(void)
 				break;
 			}
 			case 'n' : {
-				showGameMessage("North");
+				showGameMessage("↑ North");
 				step('n',&thePlayer,&theRealm);
 				break;
 			}
 			case 's' : {
-				showGameMessage("South");
+				showGameMessage("↓ South");
 				step('s',&thePlayer,&theRealm);
 				break;
 			}
 			case 'e' : {
-				showGameMessage("East");
+				showGameMessage("→ East");
 				step('e',&thePlayer,&theRealm);
 				break;
 			}
 			case 'w' : {
-				showGameMessage("West");
+				showGameMessage("← West");
 				step('w',&thePlayer,&theRealm);
 				break;
 			}
@@ -205,29 +214,45 @@ void step(char Direction,tPlayer *Player,tRealm *Realm)
 	int Consumed = 0;
 	switch (AreaContents)
 	{
-		
 		// const char Baddies[]={'O','T','B','H'};
 		case 'O' :{
-			showGameMessage("A smelly green Ogre appears before you");
+			showGameMessage(
+				"\r\n"
+				SPRITE_OGRE
+				"> > A smelly green Ogre appears before you! < <"
+				);
 			Consumed = doChallenge(Player,0);
 			break;
 		}
 		case 'T' :{
-			showGameMessage("An evil troll challenges you");
+			showGameMessage(
+				"\r\n"
+				SPRITE_TROLL
+				"> > An evil troll challenges you! < <"
+				);
 			Consumed = doChallenge(Player,1);
 			break;
 		}
 		case 'D' :{
-			showGameMessage("A smouldering Dragon blocks your way !");
+			showGameMessage(
+				"\r\n"
+				SPRITE_DRAGON
+				"> > A smouldering Dragon blocks your way! < <"
+			);
 			Consumed = doChallenge(Player,2);
 			break;
 		}
 		case 'H' :{
-			showGameMessage("A withered hag cackles at you wickedly");
+			showGameMessage(
+				"\r\n"
+				SPRITE_HAG
+				"> > A withered hag cackles at you wickedly! < <"
+			);
 			Consumed = doChallenge(Player,3);
 			break;
 		}
 		case 'h' :{
+			playSFX(SFXPotion,SFX_POTION_SIZE);
 			showGameMessage("You find an elixer of health");
 			setHealth(Player,Player->health+10);
 			Consumed = 1;		
@@ -235,24 +260,28 @@ void step(char Direction,tPlayer *Player,tRealm *Realm)
 			
 		}
 		case 's' :{
+			playSFX(SFXPotion,SFX_POTION_SIZE);
 			showGameMessage("You find a potion of strength");
 			Consumed = 1;
 			setStrength(Player,Player->strength+1);
 			break;
 		}
 		case 'g' :{
+			playSFX(SFXItem,SFX_ITEM_SIZE);
 			showGameMessage("You find a shiny golden nugget");
 			Player->wealth++;			
 			Consumed = 1;
 			break;
 		}
 		case 'm' :{
+			playSFX(SFXItem,SFX_ITEM_SIZE);
 			showGameMessage("You find a magic charm");
 			Player->magic++;						
 			Consumed = 1;
 			break;
 		}
 		case 'w' :{
+			playSFX(SFXItem,SFX_ITEM_SIZE);
 			Consumed = addWeapon(Player,(int)random(MAX_WEAPONS-1)+1);
 			showPlayer(Player);
 			break;			
@@ -260,7 +289,7 @@ void step(char Direction,tPlayer *Player,tRealm *Realm)
 		case 'X' : {
 			// Player landed on the exit
 			playSFX(SFXSecret,SFX_SECRET_SIZE);
-			eputs("A door! You exit into a new realm");
+			eputs("A door! You exit into a new realm\r\n");
 			setHealth(Player,100); // maximize health
 			initRealm(&theRealm);
 			showRealm(&theRealm,Player);
@@ -271,44 +300,53 @@ void step(char Direction,tPlayer *Player,tRealm *Realm)
 }
 int doChallenge(tPlayer *Player,int BadGuyIndex)
 {
+	setRGBLED(0x00ffff, c_ledStatusPins);
+	playSFX(SFXEnemy,SFX_ENEMY_SIZE);
 	playMusic(musicCombat, MUSIC_COMBAT_SIZE);
 	char ch;
 	char Damage;
 	const byte *dmg;
 	int BadGuyHealth = 100;
-	eputs("Press F to fight");
+	eputs(" > > Press (F) to fight < < \r\n");
 	ch = getUserInput(1) | 32; // get user input and force lower case
 	if (ch == 'f')
 	{
-		eputs("\r\nChoose action");
+		setRGBLED(0x0000ff, c_ledStatusPins);
+		playSFX(SFXEnemy,SFX_ENEMY_SIZE);
+
 		while ( (Player->health > 0) && (BadGuyHealth > 0) )
 		{
-			eputs("\r\n");
+			eputs("\r\n < > < > < > < > < > < > < > < > \r\n");
+			eputs("Choose action\r\n");
 			// Player takes turn first
 			if (Player->magic > ICE_SPELL_COST)
-				eputs("(I)CE spell");
+				eputs("(I) ICE spell ");
 			if (Player->magic > FIRE_SPELL_COST)
-				eputs("(F)ire spell");
+				eputs("(F) Fire spell ");
 			if (Player->magic > LIGHTNING_SPELL_COST)
-				eputs("(L)ightning spell");
+				eputs("(L) Lightning spell ");
 			if (Player->Weapon1)
 			{
-				eputs("(1)Use ");
+				eputs("(1) Use ");
 				eputs(getWeaponName(Player->Weapon1));
+				eputchar(' ');
 			}	
 			if (Player->Weapon2)
 			{
-				eputs("(2)Use ");
+				eputs("(2) Use ");
 				eputs(getWeaponName(Player->Weapon2));
+				eputchar(' ');
 			}
-			eputs("(P)unch");
+			eputs("(P) Punch \r\n");
+			eputs(" < > < > < > < > < > < > < > < > \r\n");
 			ch = getUserInput(1);
 			switch (ch)
 			{
 				case 'i':
 				case 'I':
 				{
-					eputs("FREEZE!");
+					playSFX(SFXSpell,SFX_SPELL_SIZE);
+					eputs("FREEZE!\r\n");
 					Player->magic -= ICE_SPELL_COST;
 					BadGuyHealth -= FreezeSpellDamage[BadGuyIndex]+random(10);
 					zap();
@@ -317,7 +355,8 @@ int doChallenge(tPlayer *Player,int BadGuyIndex)
 				case 'f':
 				case 'F':
 				{
-					eputs("BURN!");
+					playSFX(SFXSpell,SFX_SPELL_SIZE);
+					eputs("BURN!\r\n");
 					Player->magic -= FIRE_SPELL_COST;
 					BadGuyHealth -= FireSpellDamage[BadGuyIndex]+random(10);
 					zap();
@@ -326,7 +365,8 @@ int doChallenge(tPlayer *Player,int BadGuyIndex)
 				case 'l':
 				case 'L':
 				{
-					eputs("ZAP!");
+					playSFX(SFXSpell,SFX_SPELL_SIZE);
+					eputs("ZAP!\r\n");
 					Player->magic -= LIGHTNING_SPELL_COST;
 					BadGuyHealth -= LightningSpellDamage[BadGuyIndex]+random(10);
 					zap();
@@ -334,16 +374,18 @@ int doChallenge(tPlayer *Player,int BadGuyIndex)
 				}
 				case '1':
 				{
+					playSFX(SFXAttack,SFX_ATTACK_SIZE);
 					dmg = WeaponDamage+(Player->Weapon1<<2)+BadGuyIndex;
-					eputs("Take that!");
+					eputs("Take that!\r\n");
 					BadGuyHealth -= *dmg + random(Player->strength);
 					setStrength(Player,Player->strength-1);
 					break;
 				}
 				case '2':
 				{
+					playSFX(SFXAttack,SFX_ATTACK_SIZE);
 					dmg = WeaponDamage+(Player->Weapon2<<2)+BadGuyIndex;
-					eputs("Take that!");
+					eputs("Take that!\r\n");
 					BadGuyHealth -= *dmg + random(Player->strength);
 					setStrength(Player,Player->strength-1);
 					break;
@@ -351,13 +393,15 @@ int doChallenge(tPlayer *Player,int BadGuyIndex)
 				case 'p':
 				case 'P':
 				{
-					eputs("Thump!");
+					playSFX(SFXAttack,SFX_ATTACK_SIZE);
+					eputs("Thump!\r\n");
 					BadGuyHealth -= 1+random(Player->strength);
 					setStrength(Player,Player->strength-1);
 					break;
 				}
 				default: {
-					eputs("You fumble. Uh oh");
+					playSFX(SFXBlocked,SFX_BLOCKED_SIZE);
+					eputs("You fumble. Uh oh\r\n");
 				}
 			}
 			// Bad guy then gets a go 
@@ -366,19 +410,25 @@ int doChallenge(tPlayer *Player,int BadGuyIndex)
 				BadGuyHealth = 0;
 			Damage = (uint8_t)(BadGuyDamage[BadGuyIndex]+(int)random(5));
 			setHealth(Player,Player->health - Damage);
-			eputs("Health: you "); printDecimal(Player->health);
-			eputs(", them " );printDecimal((uint32_t)BadGuyHealth);
+			eputs("Player Health: "); printDecimal(Player->health);
+			eputs("\r\n");
+			eputs("Enemy Health: " );printDecimal((uint32_t)BadGuyHealth);
 			eputs("\r\n");
 		}
 		if (Player->health == 0)
 		{ // You died
 			playSFX(SFXDefeat,SFX_DEFEAT_SIZE);
+			playMusic(audioNULL,AUDIO_NULL_SIZE); // Stop music playing
+
 			eputs("You are dead. Press Reset to restart");
 			while(1);
 		}
 		else
 		{ // You won!
+			setRGBLED(0x00ff00, c_ledStatusPins);
 			playSFX(SFXVictory,SFX_VICTORY_SIZE);
+			playMusic(musicExplore,MUSIC_EXPLORE_SIZE);
+
 			Player->wealth = (uint8_t)(50 + random(50));			
 			showGameMessage("You win! Their gold is yours");			
 			return 1;
@@ -387,6 +437,8 @@ int doChallenge(tPlayer *Player,int BadGuyIndex)
 	}
 	else
 	{
+		setRGBLED(0x00ff00, c_ledStatusPins);
+		playMusic(musicExplore,MUSIC_EXPLORE_SIZE);
 		showGameMessage("Our 'hero' chickens out");
 		return 0;
 	}
@@ -518,6 +570,11 @@ void initPlayer(tPlayer *Player,tRealm *Realm)
 }
 void showPlayer(tPlayer *Player)
 {
+	eputs(
+		"\r\n"
+		" - - --==== Player Stats ====-- - -"
+		"\r\n"
+		);
 	eputs("\r\nName:\t\t");
 	eputs(Player->name);
 	eputs("\r\nhealth:\t\t");
@@ -570,7 +627,15 @@ void initRealm(tRealm *Realm)
 void showRealm(tRealm *Realm,tPlayer *Player)
 {
 	int x,y;
-	eputs("\r\nThe Realm:\r\n");	
+	// TODO: FORMAT	
+	eputs(
+		"\r\n"
+		" - - ------===============------ - -\r\n"
+		"\r\n"
+		"░▀█▀░█▄█▒██▀░░▒█▀▄▒██▀▒▄▀▄░█▒░░█▄▒▄█\r\n"
+		"░▒█▒▒█▒█░█▄▄▒░░█▀▄░█▄▄░█▀█▒█▄▄░█▒▀▒█\r\n"
+		"\r\n"
+		);
 	for (y=0;y<MAP_HEIGHT;y++)
 	{
 		for (x=0;x<MAP_WIDTH;x++)
@@ -580,30 +645,43 @@ void showRealm(tRealm *Realm,tPlayer *Player)
 				eputchar('@');
 			else
 				eputchar(Realm->map[y][x]);
+			eputchar(' ');
 		}
 		eputs("\r\n");
 	}
-	eputs("\r\n - - --==== Legend ====-- - -\r\n");
-	eputs("(T)roll, (O)gre, (D)ragon, (H)ag, e(X)it\r\n");
-	eputs("(w)eapon, (g)old), (m)agic, (s)trength\r\n");
-	eputs("@=You\r\n");
+	eputs(
+		"\r\n - - --==== Legend ====-- - -\r\n"
+		"(T) Troll,  (O) Ogre, (D) Dragon, (H) Hag,     (X) Exit\r\n"
+		"(w) Weapon, (g) Gold, (m) Magic,  (s) Strength (*) Rock\r\n"
+		"@=You\r\n"
+		"\r\n"
+		);
 }
 void showHelp()
 {
-
-	eputs("Help\r\n");
-	eputs("N,S,E,W : go North, South, East, West\r\n");
-	eputs("M : show map (cost: 1 gold piece)\r\n");
-	eputs("(H)elp\r\n");
-	eputs("(P)layer details\r\n");
-	
+	eputs(
+		"\r\n"
+		" - - --==== Help ====-- - -\r\n"
+		"\r\n"
+		"Movement:\r\n"
+		"   (N)	      (N)orth (E)east\r\n"
+		"(W)   (E) =>\r\n"
+		"   (S)	      (S)outh (W)est\r\n"
+		"\r\n"
+		""
+		"(M) => Show map (cost: 1 gold piece)\r\n"
+		"(H) => Help\r\n"
+		"(P) => Player details\r\n"
+		"\r\n"
+		);
 }
 
 void showGameMessage(char *Msg)
 {
 	eputs(Msg);
-	eputs("\r\nReady\r\n");	
+	eputs("\r\n-= Ready =-\r\n");	
 }
+
 // Gets user input
 // inputMode:
 // 		0 -> Computer keyboard input
@@ -769,7 +847,14 @@ void Health_Display_Handler()
 			if (dly < 500) dly = 500;
 			if (dly > 2000) dly = 200;
 			
-			onTime = 250;
+			if (dly>750)
+			{
+				onTime = 500;
+			}
+			else
+			{
+				onTime = 250;
+			}
 		}
 		else
 		{

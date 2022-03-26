@@ -167,12 +167,18 @@ static const uint32_t SFXBlocked[SFX_BLOCKED_SIZE][2] = {
     {0,100},{C3,100},{0,10},{C3,250},{0,100},{0,0}
 };
 // Typing
-#define SFX_TYPE_SIZE 5
+#define SFX_TYPE_SIZE 6
 static const uint32_t SFXType[SFX_TYPE_SIZE][2] = {
-    {C2,20},{C2,20},{C2,20},{0,50},{0,0}
+    {C3,20},{C3,20},{C2,20},{C2,20},{0,50},{0,0}
 };
 
 // == Game outcome sfx ==
+#define SFX_ENEMY_SIZE 43
+static const uint32_t SFXEnemy[SFX_ENEMY_SIZE][2] = {
+    {0,500},{C4,20},{C4,20},{C4,20},{C4,20},{C4,20},{DS4_Eb4,20},{DS4_Eb4,20},{DS4_Eb4,20},{DS4_Eb4,20},{DS4_Eb4,20},{C4,20},{C4,20},{C4,20},{C4,20},{C4,20},{DS4_Eb4,20},{DS4_Eb4,20},{DS4_Eb4,20},{DS4_Eb4,20},{DS4_Eb4,20},
+    {C3,20},{C3,20},{C3,20},{C3,20},{C3,20},{DS3_Eb3,20},{DS3_Eb3,20},{DS3_Eb3,20},{DS3_Eb3,20},{DS3_Eb3,20},{C3,20},{C3,20},{C3,20},{C3,20},{C3,20},{DS3_Eb3,20},{DS3_Eb3,20},{DS3_Eb3,20},{DS3_Eb3,20},{DS3_Eb3,20},
+    {0,500},{0,0}
+};
 // http://steellemon.com/2020/11/19/how-to-play-the-legend-of-zelda-secret-sound/
 // Secret Unlock
 #define SFX_SECRET_SIZE 11
@@ -192,11 +198,22 @@ static const uint32_t SFXDefeat[SFX_DEFEAT_SIZE][2] = {
 
 // == Character SFX ==
 // Health
-#define SFX_HEALTH_SIZE 32
-static const uint32_t SFXHealth[SFX_HEALTH_SIZE][2] = {
+#define SFX_POTION_SIZE 32
+static const uint32_t SFXPotion[SFX_POTION_SIZE][2] = {
     {0,100},{C4,100},{D4,100},{E4,100},{D4,100},{E4,100},{F4,100},{E4,100},{F4,100},{G4,100},{F4,100},{G4,100},{A4,100},{G4,100},{A4,100},{B4,100},{A4,100},{B4,100},{C5,100},{B4,100},{C5,100},{0,100},{0,0}
 };
-
+#define SFX_ITEM_SIZE 18
+static const uint32_t SFXItem[SFX_ITEM_SIZE][2] = {
+    {0,100},{C4,50},{D4,50},{E4,50},{F4,50},{G4,50},{A4,50},{B4,50},{C5,50},{D5,50},{E5,50},{F5,50},{G5,50},{A5,50},{B5,50},{C6,50},{0,100},{0,0}
+};
+#define SFX_SPELL_SIZE 19
+static const uint32_t SFXSpell[SFX_SPELL_SIZE][2] = {
+    {0,100},{E4,20},{E4,20},{E4,20},{E4,20},{E4,20},{DS4_Eb4,20},{DS4_Eb4,20},{DS4_Eb4,20},{DS4_Eb4,20},{DS4_Eb4,20},{C4,20},{C4,20},{C4,20},{C4,20},{C4,20},{DS4_Eb4,20},{0,100},{0,0}
+};
+#define SFX_ATTACK_SIZE 14
+static const uint32_t SFXAttack[SFX_ATTACK_SIZE][2] = {
+    {0,100},{E4,20},{E4,20},{E4,20},{E4,20},{E4,20},{0,100},{C4,20},{C4,20},{C4,20},{C4,20},{C4,20},{0,100},{0,0}
+};
 
 // ==== Music here ====
 // https://virtualpiano.net/music-sheet/links-memories-the-legend-of-zelda-koji-kondo/

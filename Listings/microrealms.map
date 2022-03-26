@@ -68,14 +68,14 @@ Section Cross References
     realm.o(.text.runGame) refers to realm.o(.text.showHelp) for showHelp
     realm.o(.text.runGame) refers to realm.o(.text.initRealm) for initRealm
     realm.o(.text.runGame) refers to realm.o(.text.initPlayer) for initPlayer
+    realm.o(.text.runGame) refers to music.o(.text.playMusic) for playMusic
     realm.o(.text.runGame) refers to realm.o(.text.showPlayer) for showPlayer
     realm.o(.text.runGame) refers to realm.o(.text.showRealm) for showRealm
     realm.o(.text.runGame) refers to realm.o(.text.showGameMessage) for showGameMessage
-    realm.o(.text.runGame) refers to music.o(.text.playMusic) for playMusic
     realm.o(.text.runGame) refers to realm.o(.text.step) for step
     realm.o(.text.runGame) refers to realm.o(.text.getUserInput) for getUserInput
     realm.o(.text.runGame) refers to realm.o(.rodata.musicTitle) for [Anonymous Symbol]
-    realm.o(.text.runGame) refers to realm.o(.rodata.str1.1) for .L.str.1
+    realm.o(.text.runGame) refers to realm.o(.rodata.str1.1) for .L.str
     realm.o(.text.runGame) refers to realm.o(.bss.GameStarted) for [Anonymous Symbol]
     realm.o(.text.runGame) refers to realm.o(.rodata.SFXBeepTwo) for [Anonymous Symbol]
     realm.o(.text.runGame) refers to realm.o(.bss.theRealm) for [Anonymous Symbol]
@@ -89,6 +89,7 @@ Section Cross References
     realm.o(.text.randomize) refers to realm.o(.data.shift_register) for [Anonymous Symbol]
     realm.o(.ARM.exidx.text.randomize) refers to realm.o(.text.randomize) for [Anonymous Symbol]
     realm.o(.text.showHelp) refers to stm32l031lib.o(.text.eputs) for eputs
+    realm.o(.text.showHelp) refers to realm.o(.rodata.str1.1) for .L.str.67
     realm.o(.ARM.exidx.text.showHelp) refers to realm.o(.text.showHelp) for [Anonymous Symbol]
     realm.o(.text.showGameMessage) refers to stm32l031lib.o(.text.eputs) for eputs
     realm.o(.ARM.exidx.text.showGameMessage) refers to realm.o(.text.showGameMessage) for [Anonymous Symbol]
@@ -113,7 +114,7 @@ Section Cross References
     realm.o(.ARM.exidx.text.showPlayer) refers to realm.o(.text.showPlayer) for [Anonymous Symbol]
     realm.o(.text.showRealm) refers to stm32l031lib.o(.text.eputs) for eputs
     realm.o(.text.showRealm) refers to stm32l031lib.o(.text.eputchar) for eputchar
-    realm.o(.text.showRealm) refers to realm.o(.rodata.str1.1) for .L.str.21
+    realm.o(.text.showRealm) refers to realm.o(.rodata.str1.1) for .L.str.65
     realm.o(.ARM.exidx.text.showRealm) refers to realm.o(.text.showRealm) for [Anonymous Symbol]
     realm.o(.text.step) refers to music.o(.text.playSFX) for playSFX
     realm.o(.text.step) refers to realm.o(.text.showGameMessage) for showGameMessage
@@ -130,23 +131,33 @@ Section Cross References
     realm.o(.text.step) refers to realm.o(.rodata.SFXBlocked) for [Anonymous Symbol]
     realm.o(.text.step) refers to realm.o(.rodata.SFXSecret) for [Anonymous Symbol]
     realm.o(.text.step) refers to realm.o(.bss.theRealm) for [Anonymous Symbol]
-    realm.o(.text.step) refers to realm.o(.rodata.str1.1) for .L.str.14
+    realm.o(.text.step) refers to realm.o(.rodata.SFXItem) for [Anonymous Symbol]
+    realm.o(.text.step) refers to realm.o(.rodata.SFXPotion) for [Anonymous Symbol]
+    realm.o(.text.step) refers to realm.o(.rodata.str1.1) for .L.str.13
     realm.o(.ARM.exidx.text.step) refers to realm.o(.text.step) for [Anonymous Symbol]
+    realm.o(.text.doChallenge) refers to stm32l031lib.o(.text.setRGBLED) for setRGBLED
+    realm.o(.text.doChallenge) refers to music.o(.text.playSFX) for playSFX
     realm.o(.text.doChallenge) refers to music.o(.text.playMusic) for playMusic
     realm.o(.text.doChallenge) refers to stm32l031lib.o(.text.eputs) for eputs
     realm.o(.text.doChallenge) refers to realm.o(.text.getUserInput) for getUserInput
     realm.o(.text.doChallenge) refers to realm.o(.text.getWeaponName) for getWeaponName
+    realm.o(.text.doChallenge) refers to stm32l031lib.o(.text.eputchar) for eputchar
     realm.o(.text.doChallenge) refers to realm.o(.text.random) for random
     realm.o(.text.doChallenge) refers to realm.o(.text.setStrength) for setStrength
     realm.o(.text.doChallenge) refers to realm.o(.text.setHealth) for setHealth
     realm.o(.text.doChallenge) refers to stm32l031lib.o(.text.printDecimal) for printDecimal
-    realm.o(.text.doChallenge) refers to music.o(.text.playSFX) for playSFX
     realm.o(.text.doChallenge) refers to realm.o(.text.showGameMessage) for showGameMessage
+    realm.o(.text.doChallenge) refers to realm.o(.rodata.SFXEnemy) for [Anonymous Symbol]
     realm.o(.text.doChallenge) refers to realm.o(.rodata.musicCombat) for [Anonymous Symbol]
-    realm.o(.text.doChallenge) refers to realm.o(.rodata.str1.1) for .L.str.21
+    realm.o(.text.doChallenge) refers to realm.o(.rodata.musicExplore) for [Anonymous Symbol]
+    realm.o(.text.doChallenge) refers to realm.o(.rodata.str1.1) for .L.str.39
+    realm.o(.text.doChallenge) refers to realm.o(.rodata.SFXAttack) for [Anonymous Symbol]
     realm.o(.text.doChallenge) refers to realm.o(.rodata.cst16) for WeaponDamage
+    realm.o(.text.doChallenge) refers to realm.o(.rodata.SFXSpell) for [Anonymous Symbol]
+    realm.o(.text.doChallenge) refers to realm.o(.rodata.SFXBlocked) for [Anonymous Symbol]
     realm.o(.text.doChallenge) refers to realm.o(.rodata.SFXVictory) for [Anonymous Symbol]
     realm.o(.text.doChallenge) refers to realm.o(.rodata.SFXDefeat) for [Anonymous Symbol]
+    realm.o(.text.doChallenge) refers to realm.o(.rodata.audioNULL) for [Anonymous Symbol]
     realm.o(.ARM.exidx.text.doChallenge) refers to realm.o(.text.doChallenge) for [Anonymous Symbol]
     realm.o(.ARM.exidx.text.setHealth) refers to realm.o(.text.setHealth) for [Anonymous Symbol]
     realm.o(.ARM.exidx.text.setStrength) refers to realm.o(.text.setStrength) for [Anonymous Symbol]
@@ -155,11 +166,11 @@ Section Cross References
     realm.o(.text.addWeapon) refers to realm.o(.text.showPlayer) for showPlayer
     realm.o(.text.addWeapon) refers to realm.o(.text.getUserInput) for getUserInput
     realm.o(.text.addWeapon) refers to stm32l031lib.o(.text.eputchar) for eputchar
-    realm.o(.text.addWeapon) refers to realm.o(.rodata.str1.1) for .L.str.43
+    realm.o(.text.addWeapon) refers to realm.o(.rodata.str1.1) for .L.str.44
     realm.o(.ARM.exidx.text.addWeapon) refers to realm.o(.text.addWeapon) for [Anonymous Symbol]
     realm.o(.text.random) refers to realm.o(.text.prbs) for prbs
     realm.o(.ARM.exidx.text.random) refers to realm.o(.text.random) for [Anonymous Symbol]
-    realm.o(.text.getWeaponName) refers to realm.o(.rodata.str1.1) for .L.str.45
+    realm.o(.text.getWeaponName) refers to realm.o(.rodata.str1.1) for .L.str.46
     realm.o(.ARM.exidx.text.getWeaponName) refers to realm.o(.text.getWeaponName) for [Anonymous Symbol]
     realm.o(.ARM.exidx.text.zap) refers to realm.o(.text.zap) for [Anonymous Symbol]
     realm.o(.text.prbs) refers to realm.o(.bss.prbs.busy) for [Anonymous Symbol]
@@ -560,171 +571,213 @@ Image Symbol Table
     __arm_cp.3_9                             0x08000c88   Number         4  music.o(.text.Audio_Handler)
     [Anonymous Symbol]                       0x08000c8c   Section        0  stm32l031lib.o(.text.Delay_Handler)
     [Anonymous Symbol]                       0x08000c9c   Section        0  realm.o(.text.Health_Display_Handler)
-    __arm_cp.18_0                            0x08000d5c   Number         4  realm.o(.text.Health_Display_Handler)
-    __arm_cp.18_1                            0x08000d60   Number         4  realm.o(.text.Health_Display_Handler)
-    __arm_cp.18_2                            0x08000d64   Number         4  realm.o(.text.Health_Display_Handler)
-    __arm_cp.18_3                            0x08000d68   Number         4  realm.o(.text.Health_Display_Handler)
-    __arm_cp.18_7                            0x08000d6c   Number         4  realm.o(.text.Health_Display_Handler)
-    [Anonymous Symbol]                       0x08000d70   Section        0  main.o(.text.SysTick_Handler)
-    [Anonymous Symbol]                       0x08000d80   Section        0  system_stm32l0xx.o(.text.SystemInit)
-    __arm_cp.0_0                             0x08000dc0   Number         4  system_stm32l0xx.o(.text.SystemInit)
-    __arm_cp.0_1                             0x08000dc4   Number         4  system_stm32l0xx.o(.text.SystemInit)
-    __arm_cp.0_2                             0x08000dc8   Number         4  system_stm32l0xx.o(.text.SystemInit)
-    __arm_cp.0_3                             0x08000dcc   Number         4  system_stm32l0xx.o(.text.SystemInit)
-    [Anonymous Symbol]                       0x08000dd0   Section        0  realm.o(.text.addWeapon)
-    __arm_cp.13_4                            0x08000eac   Number         4  realm.o(.text.addWeapon)
-    [Anonymous Symbol]                       0x08000edc   Section        0  stm32l031lib.o(.text.delay)
-    __arm_cp.2_0                             0x08000f58   Number         4  stm32l031lib.o(.text.delay)
-    __arm_cp.2_1                             0x08000f5c   Number         4  stm32l031lib.o(.text.delay)
-    __arm_cp.2_2                             0x08000f60   Number         4  stm32l031lib.o(.text.delay)
-    __arm_cp.2_3                             0x08000f64   Number         4  stm32l031lib.o(.text.delay)
-    __arm_cp.2_4                             0x08000f68   Number         4  stm32l031lib.o(.text.delay)
-    __arm_cp.2_5                             0x08000f6c   Number         4  stm32l031lib.o(.text.delay)
-    [Anonymous Symbol]                       0x08000f70   Section        0  realm.o(.text.doChallenge)
-    __arm_cp.10_0                            0x08001178   Number         4  realm.o(.text.doChallenge)
-    __arm_cp.10_4                            0x080011b8   Number         4  realm.o(.text.doChallenge)
-    __arm_cp.10_12                           0x0800120c   Number         4  realm.o(.text.doChallenge)
-    __arm_cp.10_13                           0x08001210   Number         4  realm.o(.text.doChallenge)
-    LightningSpellDamage                     0x0800121c   Number         0  realm.o(.text.doChallenge)
-    FireSpellDamage                          0x08001228   Number         0  realm.o(.text.doChallenge)
-    FreezeSpellDamage                        0x08001234   Number         0  realm.o(.text.doChallenge)
-    __arm_cp.10_20                           0x08001238   Number         4  realm.o(.text.doChallenge)
-    BadGuyDamage                             0x0800123c   Number         0  realm.o(.text.doChallenge)
-    __arm_cp.10_22                           0x08001240   Number         4  realm.o(.text.doChallenge)
-    __arm_cp.10_24                           0x0800124c   Number         4  realm.o(.text.doChallenge)
-    __arm_cp.10_25                           0x08001250   Number         4  realm.o(.text.doChallenge)
-    __arm_cp.10_26                           0x08001254   Number         4  realm.o(.text.doChallenge)
-    __arm_cp.10_27                           0x08001258   Number         4  realm.o(.text.doChallenge)
-    [Anonymous Symbol]                       0x0800125c   Section        0  stm32l031lib.o(.text.egetchar)
-    [Anonymous Symbol]                       0x0800126c   Section        0  stm32l031lib.o(.text.enablePullUp)
-    [Anonymous Symbol]                       0x08001284   Section        0  stm32l031lib.o(.text.eputchar)
-    __arm_cp.11_0                            0x08001290   Number         4  stm32l031lib.o(.text.eputchar)
-    [Anonymous Symbol]                       0x08001294   Section        0  stm32l031lib.o(.text.eputs)
-    [Anonymous Symbol]                       0x080012b0   Section        0  stm32l031lib.o(.text.getKeypadValue)
-    __arm_cp.18_0                            0x08001370   Number         4  stm32l031lib.o(.text.getKeypadValue)
-    [Anonymous Symbol]                       0x08001374   Section        0  realm.o(.text.getUserInput)
-    [Anonymous Symbol]                       0x08001524   Section        0  realm.o(.text.getWeaponName)
-    [Anonymous Symbol]                       0x0800154c   Section        0  music.o(.text.initAudio)
-    __arm_cp.0_0                             0x08001568   Number         4  music.o(.text.initAudio)
-    __arm_cp.0_1                             0x0800156c   Number         4  music.o(.text.initAudio)
-    __arm_cp.0_2                             0x08001570   Number         4  music.o(.text.initAudio)
-    [Anonymous Symbol]                       0x08001574   Section        0  stm32l031lib.o(.text.initClock)
-    __arm_cp.9_0                             0x080015a0   Number         4  stm32l031lib.o(.text.initClock)
-    __arm_cp.9_1                             0x080015a4   Number         4  stm32l031lib.o(.text.initClock)
-    [Anonymous Symbol]                       0x080015a8   Section        0  stm32l031lib.o(.text.initKeypad)
-    [Anonymous Symbol]                       0x08001610   Section        0  stm32l031lib.o(.text.initPins)
-    __arm_cp.15_1                            0x08001688   Number         4  stm32l031lib.o(.text.initPins)
-    [Anonymous Symbol]                       0x0800168c   Section        0  realm.o(.text.initPlayer)
-    __arm_cp.6_0                             0x08001750   Number         4  realm.o(.text.initPlayer)
-    __arm_cp.6_2                             0x08001770   Number         4  realm.o(.text.initPlayer)
-    [Anonymous Symbol]                       0x08001774   Section        0  stm32l031lib.o(.text.initRGBLED)
-    [Anonymous Symbol]                       0x08001798   Section        0  realm.o(.text.initRealm)
-    FindTypes                                0x08001808   Number         0  realm.o(.text.initRealm)
-    Baddies                                  0x08001810   Number         0  realm.o(.text.initRealm)
-    [Anonymous Symbol]                       0x08001814   Section        0  stm32l031lib.o(.text.initSerial)
-    __arm_cp.10_0                            0x08001898   Number         4  stm32l031lib.o(.text.initSerial)
-    __arm_cp.10_1                            0x0800189c   Number         4  stm32l031lib.o(.text.initSerial)
-    __arm_cp.10_2                            0x080018a0   Number         4  stm32l031lib.o(.text.initSerial)
-    __arm_cp.10_3                            0x080018a4   Number         4  stm32l031lib.o(.text.initSerial)
-    [Anonymous Symbol]                       0x080018a8   Section        0  main.o(.text.main)
-    __arm_cp.0_0                             0x080018c8   Number         4  main.o(.text.main)
-    [Anonymous Symbol]                       0x080018cc   Section        0  stm32l031lib.o(.text.pinMode)
-    [Anonymous Symbol]                       0x080018e0   Section        0  music.o(.text.playMusic)
-    __arm_cp.1_0                             0x080018f0   Number         4  music.o(.text.playMusic)
-    __arm_cp.1_1                             0x080018f4   Number         4  music.o(.text.playMusic)
-    __arm_cp.1_2                             0x080018f8   Number         4  music.o(.text.playMusic)
-    [Anonymous Symbol]                       0x080018fc   Section        0  music.o(.text.playSFX)
-    __arm_cp.2_0                             0x08001908   Number         4  music.o(.text.playSFX)
-    __arm_cp.2_1                             0x0800190c   Number         4  music.o(.text.playSFX)
-    [Anonymous Symbol]                       0x08001910   Section        0  realm.o(.text.prbs)
-    __arm_cp.17_0                            0x08001940   Number         4  realm.o(.text.prbs)
-    [Anonymous Symbol]                       0x08001944   Section        0  stm32l031lib.o(.text.printDecimal)
-    [Anonymous Symbol]                       0x08001982   Section        0  realm.o(.text.random)
-    [Anonymous Symbol]                       0x08001998   Section        0  realm.o(.text.randomize)
-    __arm_cp.1_0                             0x080019c8   Number         4  realm.o(.text.randomize)
-    [Anonymous Symbol]                       0x080019cc   Section        0  stm32l031lib.o(.text.readPin)
-    [Anonymous Symbol]                       0x080019d8   Section        0  realm.o(.text.runGame)
-    __arm_cp.0_0                             0x08001b58   Number         4  realm.o(.text.runGame)
-    __arm_cp.0_1                             0x08001b5c   Number         4  realm.o(.text.runGame)
-    __arm_cp.0_3                             0x08001b80   Number         4  realm.o(.text.runGame)
-    __arm_cp.0_4                             0x08001b84   Number         4  realm.o(.text.runGame)
-    __arm_cp.0_6                             0x08001bb4   Number         4  realm.o(.text.runGame)
-    __arm_cp.0_7                             0x08001bb8   Number         4  realm.o(.text.runGame)
-    __arm_cp.0_8                             0x08001bbc   Number         4  realm.o(.text.runGame)
-    __arm_cp.0_10                            0x08001bd4   Number         4  realm.o(.text.runGame)
-    __arm_cp.0_11                            0x08001bd8   Number         4  realm.o(.text.runGame)
-    __arm_cp.0_17                            0x08001c08   Number         4  realm.o(.text.runGame)
-    [Anonymous Symbol]                       0x08001c0c   Section        0  realm.o(.text.setHealth)
-    [Anonymous Symbol]                       0x08001c1a   Section        0  stm32l031lib.o(.text.setPinHigh)
-    [Anonymous Symbol]                       0x08001c26   Section        0  stm32l031lib.o(.text.setPinLow)
-    [Anonymous Symbol]                       0x08001c32   Section        0  stm32l031lib.o(.text.setRGBLED)
-    [Anonymous Symbol]                       0x08001c84   Section        0  realm.o(.text.setStrength)
-    [Anonymous Symbol]                       0x08001c90   Section        0  realm.o(.text.showGameMessage)
-    [Anonymous Symbol]                       0x08001cac   Section        0  realm.o(.text.showHelp)
-    [Anonymous Symbol]                       0x08001d44   Section        0  realm.o(.text.showPlayer)
-    [Anonymous Symbol]                       0x08001e54   Section        0  realm.o(.text.showRealm)
-    __arm_cp.8_1                             0x08001ec4   Number         4  realm.o(.text.showRealm)
-    __arm_cp.8_2                             0x08001ec8   Number         4  realm.o(.text.showRealm)
-    [Anonymous Symbol]                       0x08001f2c   Section        0  realm.o(.text.step)
-    __arm_cp.9_0                             0x080020e0   Number         4  realm.o(.text.step)
-    __arm_cp.9_1                             0x080020e4   Number         4  realm.o(.text.step)
-    __arm_cp.9_2                             0x080020e8   Number         4  realm.o(.text.step)
-    __arm_cp.9_4                             0x08002110   Number         4  realm.o(.text.step)
-    __arm_cp.9_8                             0x0800216c   Number         4  realm.o(.text.step)
-    __arm_cp.9_9                             0x08002170   Number         4  realm.o(.text.step)
-    __arm_cp.9_10                            0x08002174   Number         4  realm.o(.text.step)
-    __arm_cp.9_11                            0x08002178   Number         4  realm.o(.text.step)
-    __arm_cp.9_12                            0x0800217c   Number         4  realm.o(.text.step)
-    __arm_cp.9_13                            0x08002180   Number         4  realm.o(.text.step)
-    .text_divfast                            0x08002184   Section      502  aeabi_sdivfast.o(.text_divfast)
-    ddiv_reciptbl                            0x0800237a   Data         128  ddiv.o(.constdata)
-    .constdata                               0x0800237a   Section      128  ddiv.o(.constdata)
-    x$fpl$usenofp                            0x0800237a   Section        0  usenofp.o(x$fpl$usenofp)
-    SFXBeep                                  0x080023fc   Data          32  realm.o(.rodata.SFXBeep)
-    [Anonymous Symbol]                       0x080023fc   Section        0  realm.o(.rodata.SFXBeep)
-    SFXBeepTwo                               0x0800241c   Data          40  realm.o(.rodata.SFXBeepTwo)
-    [Anonymous Symbol]                       0x0800241c   Section        0  realm.o(.rodata.SFXBeepTwo)
-    SFXBlocked                               0x08002444   Data          48  realm.o(.rodata.SFXBlocked)
-    [Anonymous Symbol]                       0x08002444   Section        0  realm.o(.rodata.SFXBlocked)
-    SFXDefeat                                0x08002474   Data         256  realm.o(.rodata.SFXDefeat)
-    [Anonymous Symbol]                       0x08002474   Section        0  realm.o(.rodata.SFXDefeat)
-    SFXLowHealth                             0x08002574   Data          56  realm.o(.rodata.SFXLowHealth)
-    [Anonymous Symbol]                       0x08002574   Section        0  realm.o(.rodata.SFXLowHealth)
-    SFXSecret                                0x080025ac   Data          88  realm.o(.rodata.SFXSecret)
-    [Anonymous Symbol]                       0x080025ac   Section        0  realm.o(.rodata.SFXSecret)
-    SFXType                                  0x08002604   Data          40  realm.o(.rodata.SFXType)
-    [Anonymous Symbol]                       0x08002604   Section        0  realm.o(.rodata.SFXType)
-    SFXVictory                               0x0800262c   Data         104  realm.o(.rodata.SFXVictory)
-    [Anonymous Symbol]                       0x0800262c   Section        0  realm.o(.rodata.SFXVictory)
-    audioNULL                                0x08002694   Data           8  music.o(.rodata.audioNULL)
-    [Anonymous Symbol]                       0x08002694   Section        0  music.o(.rodata.audioNULL)
-    WeaponDamage                             0x0800269c   Data          16  realm.o(.rodata.cst16)
-    musicCombat                              0x080026ac   Data        1280  realm.o(.rodata.musicCombat)
-    [Anonymous Symbol]                       0x080026ac   Section        0  realm.o(.rodata.musicCombat)
-    musicExplore                             0x08002bac   Data        2312  realm.o(.rodata.musicExplore)
-    [Anonymous Symbol]                       0x08002bac   Section        0  realm.o(.rodata.musicExplore)
-    musicTitle                               0x080034b4   Data         440  realm.o(.rodata.musicTitle)
-    [Anonymous Symbol]                       0x080034b4   Section        0  realm.o(.rodata.musicTitle)
-    .L.str.64                                0x0800366c   Data          34  realm.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x0800366c   Section        0  realm.o(.rodata.str1.1)
-    .L.str.1                                 0x0800368e   Data         306  realm.o(.rodata.str1.1)
-    .L.str.43                                0x080037c0   Data          31  realm.o(.rodata.str1.1)
-    .L.str.21                                0x080037dc   Data           3  realm.o(.rodata.str1.1)
-    .L.str.34                                0x080037df   Data          13  realm.o(.rodata.str1.1)
-    .L.str.12                                0x080037ec   Data          39  realm.o(.rodata.str1.1)
-    .L.str.31                                0x08003813   Data          11  realm.o(.rodata.str1.1)
-    .L.str.9                                 0x0800381e   Data          25  realm.o(.rodata.str1.1)
-    .L.str.47                                0x08003837   Data           6  realm.o(.rodata.str1.1)
-    .L.str.46                                0x0800383d   Data           4  realm.o(.rodata.str1.1)
-    .L.str.33                                0x08003841   Data          18  realm.o(.rodata.str1.1)
-    .L.str.14                                0x08003853   Data          29  realm.o(.rodata.str1.1)
-    .L.str.48                                0x08003870   Data           6  realm.o(.rodata.str1.1)
-    .L.str.37                                0x08003876   Data          29  realm.o(.rodata.str1.1)
-    .L.str.36                                0x08003893   Data          37  realm.o(.rodata.str1.1)
-    .L.str.10                                0x080038b8   Data          39  realm.o(.rodata.str1.1)
-    .L.str.11                                0x080038df   Data          29  realm.o(.rodata.str1.1)
-    .L.str.13                                0x080038fc   Data          39  realm.o(.rodata.str1.1)
-    .L.str.45                                0x08003923   Data           6  realm.o(.rodata.str1.1)
+    __arm_cp.18_0                            0x08000d68   Number         4  realm.o(.text.Health_Display_Handler)
+    __arm_cp.18_1                            0x08000d6c   Number         4  realm.o(.text.Health_Display_Handler)
+    __arm_cp.18_2                            0x08000d70   Number         4  realm.o(.text.Health_Display_Handler)
+    __arm_cp.18_3                            0x08000d74   Number         4  realm.o(.text.Health_Display_Handler)
+    __arm_cp.18_7                            0x08000d78   Number         4  realm.o(.text.Health_Display_Handler)
+    [Anonymous Symbol]                       0x08000d7c   Section        0  main.o(.text.SysTick_Handler)
+    [Anonymous Symbol]                       0x08000d8c   Section        0  system_stm32l0xx.o(.text.SystemInit)
+    __arm_cp.0_0                             0x08000dcc   Number         4  system_stm32l0xx.o(.text.SystemInit)
+    __arm_cp.0_1                             0x08000dd0   Number         4  system_stm32l0xx.o(.text.SystemInit)
+    __arm_cp.0_2                             0x08000dd4   Number         4  system_stm32l0xx.o(.text.SystemInit)
+    __arm_cp.0_3                             0x08000dd8   Number         4  system_stm32l0xx.o(.text.SystemInit)
+    [Anonymous Symbol]                       0x08000ddc   Section        0  realm.o(.text.addWeapon)
+    __arm_cp.13_4                            0x08000eb8   Number         4  realm.o(.text.addWeapon)
+    [Anonymous Symbol]                       0x08000ee8   Section        0  stm32l031lib.o(.text.delay)
+    __arm_cp.2_0                             0x08000f64   Number         4  stm32l031lib.o(.text.delay)
+    __arm_cp.2_1                             0x08000f68   Number         4  stm32l031lib.o(.text.delay)
+    __arm_cp.2_2                             0x08000f6c   Number         4  stm32l031lib.o(.text.delay)
+    __arm_cp.2_3                             0x08000f70   Number         4  stm32l031lib.o(.text.delay)
+    __arm_cp.2_4                             0x08000f74   Number         4  stm32l031lib.o(.text.delay)
+    __arm_cp.2_5                             0x08000f78   Number         4  stm32l031lib.o(.text.delay)
+    [Anonymous Symbol]                       0x08000f7c   Section        0  realm.o(.text.doChallenge)
+    BadGuyDamage                             0x08001104   Number         0  realm.o(.text.doChallenge)
+    __arm_cp.10_37                           0x08001104   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_1                            0x08001280   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_3                            0x080012a4   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_4                            0x080012a8   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_10                           0x0800131c   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_11                           0x08001320   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_12                           0x08001324   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_13                           0x08001328   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_14                           0x0800132c   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_15                           0x08001330   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_16                           0x08001334   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_17                           0x08001338   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_18                           0x0800133c   Number         4  realm.o(.text.doChallenge)
+    LightningSpellDamage                     0x08001348   Number         0  realm.o(.text.doChallenge)
+    __arm_cp.10_21                           0x0800134c   Number         4  realm.o(.text.doChallenge)
+    FireSpellDamage                          0x08001350   Number         0  realm.o(.text.doChallenge)
+    __arm_cp.10_23                           0x08001354   Number         4  realm.o(.text.doChallenge)
+    FreezeSpellDamage                        0x08001358   Number         0  realm.o(.text.doChallenge)
+    __arm_cp.10_25                           0x0800135c   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_26                           0x08001360   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_28                           0x08001364   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_29                           0x08001368   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_30                           0x0800136c   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_31                           0x08001370   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_32                           0x08001374   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_33                           0x08001378   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_34                           0x0800137c   Number         4  realm.o(.text.doChallenge)
+    __arm_cp.10_35                           0x08001380   Number         4  realm.o(.text.doChallenge)
+    [Anonymous Symbol]                       0x08001384   Section        0  stm32l031lib.o(.text.egetchar)
+    [Anonymous Symbol]                       0x08001394   Section        0  stm32l031lib.o(.text.enablePullUp)
+    [Anonymous Symbol]                       0x080013ac   Section        0  stm32l031lib.o(.text.eputchar)
+    __arm_cp.11_0                            0x080013b8   Number         4  stm32l031lib.o(.text.eputchar)
+    [Anonymous Symbol]                       0x080013bc   Section        0  stm32l031lib.o(.text.eputs)
+    [Anonymous Symbol]                       0x080013d8   Section        0  stm32l031lib.o(.text.getKeypadValue)
+    __arm_cp.18_0                            0x08001498   Number         4  stm32l031lib.o(.text.getKeypadValue)
+    [Anonymous Symbol]                       0x0800149c   Section        0  realm.o(.text.getUserInput)
+    [Anonymous Symbol]                       0x0800164c   Section        0  realm.o(.text.getWeaponName)
+    [Anonymous Symbol]                       0x08001674   Section        0  music.o(.text.initAudio)
+    __arm_cp.0_0                             0x08001690   Number         4  music.o(.text.initAudio)
+    __arm_cp.0_1                             0x08001694   Number         4  music.o(.text.initAudio)
+    __arm_cp.0_2                             0x08001698   Number         4  music.o(.text.initAudio)
+    [Anonymous Symbol]                       0x0800169c   Section        0  stm32l031lib.o(.text.initClock)
+    __arm_cp.9_0                             0x080016c8   Number         4  stm32l031lib.o(.text.initClock)
+    __arm_cp.9_1                             0x080016cc   Number         4  stm32l031lib.o(.text.initClock)
+    [Anonymous Symbol]                       0x080016d0   Section        0  stm32l031lib.o(.text.initKeypad)
+    [Anonymous Symbol]                       0x08001738   Section        0  stm32l031lib.o(.text.initPins)
+    __arm_cp.15_1                            0x080017b0   Number         4  stm32l031lib.o(.text.initPins)
+    [Anonymous Symbol]                       0x080017b4   Section        0  realm.o(.text.initPlayer)
+    __arm_cp.6_0                             0x08001878   Number         4  realm.o(.text.initPlayer)
+    __arm_cp.6_2                             0x08001898   Number         4  realm.o(.text.initPlayer)
+    [Anonymous Symbol]                       0x0800189c   Section        0  stm32l031lib.o(.text.initRGBLED)
+    [Anonymous Symbol]                       0x080018c0   Section        0  realm.o(.text.initRealm)
+    FindTypes                                0x08001930   Number         0  realm.o(.text.initRealm)
+    Baddies                                  0x08001938   Number         0  realm.o(.text.initRealm)
+    [Anonymous Symbol]                       0x0800193c   Section        0  stm32l031lib.o(.text.initSerial)
+    __arm_cp.10_0                            0x080019c0   Number         4  stm32l031lib.o(.text.initSerial)
+    __arm_cp.10_1                            0x080019c4   Number         4  stm32l031lib.o(.text.initSerial)
+    __arm_cp.10_2                            0x080019c8   Number         4  stm32l031lib.o(.text.initSerial)
+    __arm_cp.10_3                            0x080019cc   Number         4  stm32l031lib.o(.text.initSerial)
+    [Anonymous Symbol]                       0x080019d0   Section        0  main.o(.text.main)
+    __arm_cp.0_0                             0x080019f0   Number         4  main.o(.text.main)
+    [Anonymous Symbol]                       0x080019f4   Section        0  stm32l031lib.o(.text.pinMode)
+    [Anonymous Symbol]                       0x08001a08   Section        0  music.o(.text.playMusic)
+    __arm_cp.1_0                             0x08001a18   Number         4  music.o(.text.playMusic)
+    __arm_cp.1_1                             0x08001a1c   Number         4  music.o(.text.playMusic)
+    __arm_cp.1_2                             0x08001a20   Number         4  music.o(.text.playMusic)
+    [Anonymous Symbol]                       0x08001a24   Section        0  music.o(.text.playSFX)
+    __arm_cp.2_0                             0x08001a30   Number         4  music.o(.text.playSFX)
+    __arm_cp.2_1                             0x08001a34   Number         4  music.o(.text.playSFX)
+    [Anonymous Symbol]                       0x08001a38   Section        0  realm.o(.text.prbs)
+    __arm_cp.17_0                            0x08001a68   Number         4  realm.o(.text.prbs)
+    [Anonymous Symbol]                       0x08001a6c   Section        0  stm32l031lib.o(.text.printDecimal)
+    [Anonymous Symbol]                       0x08001aaa   Section        0  realm.o(.text.random)
+    [Anonymous Symbol]                       0x08001ac0   Section        0  realm.o(.text.randomize)
+    __arm_cp.1_0                             0x08001af0   Number         4  realm.o(.text.randomize)
+    [Anonymous Symbol]                       0x08001af4   Section        0  stm32l031lib.o(.text.readPin)
+    [Anonymous Symbol]                       0x08001b00   Section        0  realm.o(.text.runGame)
+    __arm_cp.0_0                             0x08001c94   Number         4  realm.o(.text.runGame)
+    __arm_cp.0_1                             0x08001c98   Number         4  realm.o(.text.runGame)
+    __arm_cp.0_2                             0x08001c9c   Number         4  realm.o(.text.runGame)
+    __arm_cp.0_3                             0x08001ca0   Number         4  realm.o(.text.runGame)
+    __arm_cp.0_5                             0x08001cd0   Number         4  realm.o(.text.runGame)
+    __arm_cp.0_6                             0x08001cd4   Number         4  realm.o(.text.runGame)
+    __arm_cp.0_7                             0x08001cd8   Number         4  realm.o(.text.runGame)
+    __arm_cp.0_8                             0x08001cdc   Number         4  realm.o(.text.runGame)
+    __arm_cp.0_10                            0x08001cf4   Number         4  realm.o(.text.runGame)
+    __arm_cp.0_16                            0x08001d34   Number         4  realm.o(.text.runGame)
+    [Anonymous Symbol]                       0x08001d38   Section        0  realm.o(.text.setHealth)
+    [Anonymous Symbol]                       0x08001d46   Section        0  stm32l031lib.o(.text.setPinHigh)
+    [Anonymous Symbol]                       0x08001d52   Section        0  stm32l031lib.o(.text.setPinLow)
+    [Anonymous Symbol]                       0x08001d5e   Section        0  stm32l031lib.o(.text.setRGBLED)
+    [Anonymous Symbol]                       0x08001db0   Section        0  realm.o(.text.setStrength)
+    [Anonymous Symbol]                       0x08001dbc   Section        0  realm.o(.text.showGameMessage)
+    [Anonymous Symbol]                       0x08001ddc   Section        0  realm.o(.text.showHelp)
+    __arm_cp.2_0                             0x08001de8   Number         4  realm.o(.text.showHelp)
+    [Anonymous Symbol]                       0x08001dec   Section        0  realm.o(.text.showPlayer)
+    [Anonymous Symbol]                       0x08001f2c   Section        0  realm.o(.text.showRealm)
+    __arm_cp.8_0                             0x08001f80   Number         4  realm.o(.text.showRealm)
+    __arm_cp.8_1                             0x08001f84   Number         4  realm.o(.text.showRealm)
+    __arm_cp.8_2                             0x08001f88   Number         4  realm.o(.text.showRealm)
+    [Anonymous Symbol]                       0x08001f8c   Section        0  realm.o(.text.step)
+    __arm_cp.9_0                             0x08002168   Number         4  realm.o(.text.step)
+    __arm_cp.9_1                             0x0800216c   Number         4  realm.o(.text.step)
+    __arm_cp.9_2                             0x08002170   Number         4  realm.o(.text.step)
+    __arm_cp.9_4                             0x08002198   Number         4  realm.o(.text.step)
+    __arm_cp.9_5                             0x0800219c   Number         4  realm.o(.text.step)
+    __arm_cp.9_8                             0x080021d8   Number         4  realm.o(.text.step)
+    __arm_cp.9_10                            0x080021fc   Number         4  realm.o(.text.step)
+    __arm_cp.9_11                            0x08002200   Number         4  realm.o(.text.step)
+    __arm_cp.9_12                            0x08002204   Number         4  realm.o(.text.step)
+    __arm_cp.9_13                            0x08002208   Number         4  realm.o(.text.step)
+    __arm_cp.9_14                            0x0800220c   Number         4  realm.o(.text.step)
+    __arm_cp.9_15                            0x08002210   Number         4  realm.o(.text.step)
+    .text_divfast                            0x08002214   Section      502  aeabi_sdivfast.o(.text_divfast)
+    ddiv_reciptbl                            0x0800240a   Data         128  ddiv.o(.constdata)
+    .constdata                               0x0800240a   Section      128  ddiv.o(.constdata)
+    x$fpl$usenofp                            0x0800240a   Section        0  usenofp.o(x$fpl$usenofp)
+    SFXAttack                                0x0800248c   Data         112  realm.o(.rodata.SFXAttack)
+    [Anonymous Symbol]                       0x0800248c   Section        0  realm.o(.rodata.SFXAttack)
+    SFXBeep                                  0x080024fc   Data          32  realm.o(.rodata.SFXBeep)
+    [Anonymous Symbol]                       0x080024fc   Section        0  realm.o(.rodata.SFXBeep)
+    SFXBeepTwo                               0x0800251c   Data          40  realm.o(.rodata.SFXBeepTwo)
+    [Anonymous Symbol]                       0x0800251c   Section        0  realm.o(.rodata.SFXBeepTwo)
+    SFXBlocked                               0x08002544   Data          48  realm.o(.rodata.SFXBlocked)
+    [Anonymous Symbol]                       0x08002544   Section        0  realm.o(.rodata.SFXBlocked)
+    SFXDefeat                                0x08002574   Data         256  realm.o(.rodata.SFXDefeat)
+    [Anonymous Symbol]                       0x08002574   Section        0  realm.o(.rodata.SFXDefeat)
+    SFXEnemy                                 0x08002674   Data         344  realm.o(.rodata.SFXEnemy)
+    [Anonymous Symbol]                       0x08002674   Section        0  realm.o(.rodata.SFXEnemy)
+    SFXItem                                  0x080027cc   Data         144  realm.o(.rodata.SFXItem)
+    [Anonymous Symbol]                       0x080027cc   Section        0  realm.o(.rodata.SFXItem)
+    SFXLowHealth                             0x0800285c   Data          56  realm.o(.rodata.SFXLowHealth)
+    [Anonymous Symbol]                       0x0800285c   Section        0  realm.o(.rodata.SFXLowHealth)
+    SFXPotion                                0x08002894   Data         256  realm.o(.rodata.SFXPotion)
+    [Anonymous Symbol]                       0x08002894   Section        0  realm.o(.rodata.SFXPotion)
+    SFXSecret                                0x08002994   Data          88  realm.o(.rodata.SFXSecret)
+    [Anonymous Symbol]                       0x08002994   Section        0  realm.o(.rodata.SFXSecret)
+    SFXSpell                                 0x080029ec   Data         152  realm.o(.rodata.SFXSpell)
+    [Anonymous Symbol]                       0x080029ec   Section        0  realm.o(.rodata.SFXSpell)
+    SFXType                                  0x08002a84   Data          48  realm.o(.rodata.SFXType)
+    [Anonymous Symbol]                       0x08002a84   Section        0  realm.o(.rodata.SFXType)
+    SFXVictory                               0x08002ab4   Data         104  realm.o(.rodata.SFXVictory)
+    [Anonymous Symbol]                       0x08002ab4   Section        0  realm.o(.rodata.SFXVictory)
+    audioNULL                                0x08002b1c   Data           8  realm.o(.rodata.audioNULL)
+    [Anonymous Symbol]                       0x08002b1c   Section        0  realm.o(.rodata.audioNULL)
+    audioNULL                                0x08002b24   Data           8  music.o(.rodata.audioNULL)
+    [Anonymous Symbol]                       0x08002b24   Section        0  music.o(.rodata.audioNULL)
+    WeaponDamage                             0x08002b2c   Data          16  realm.o(.rodata.cst16)
+    musicCombat                              0x08002b3c   Data        1280  realm.o(.rodata.musicCombat)
+    [Anonymous Symbol]                       0x08002b3c   Section        0  realm.o(.rodata.musicCombat)
+    musicExplore                             0x0800303c   Data        2312  realm.o(.rodata.musicExplore)
+    [Anonymous Symbol]                       0x0800303c   Section        0  realm.o(.rodata.musicExplore)
+    musicTitle                               0x08003944   Data         440  realm.o(.rodata.musicTitle)
+    [Anonymous Symbol]                       0x08003944   Section        0  realm.o(.rodata.musicTitle)
+    .L.str.67                                0x08003afc   Data         196  realm.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08003afc   Section        0  realm.o(.rodata.str1.1)
+    .L.str.66                                0x08003bc0   Data         157  realm.o(.rodata.str1.1)
+    .L.str.65                                0x08003c5d   Data         265  realm.o(.rodata.str1.1)
+    .L.str.27                                0x08003d66   Data          36  realm.o(.rodata.str1.1)
+    .L.str.26                                0x08003d8a   Data          13  realm.o(.rodata.str1.1)
+    .L.str.28                                0x08003d97   Data          10  realm.o(.rodata.str1.1)
+    .L.str.29                                0x08003da1   Data           8  realm.o(.rodata.str1.1)
+    .L.str.32                                0x08003da9   Data           9  realm.o(.rodata.str1.1)
+    .L.str.31                                0x08003db2   Data          13  realm.o(.rodata.str1.1)
+    .L.str.33                                0x08003dbf   Data          20  realm.o(.rodata.str1.1)
+    .L.str.44                                0x08003dd3   Data          31  realm.o(.rodata.str1.1)
+    .L.str.35                                0x08003def   Data           3  realm.o(.rodata.str1.1)
+    .L.str                                   0x08003df2   Data         518  realm.o(.rodata.str1.1)
+    .L.str.34                                0x08003ff8   Data          16  realm.o(.rodata.str1.1)
+    .L.str.36                                0x08004008   Data          15  realm.o(.rodata.str1.1)
+    .L.str.24                                0x08004017   Data           9  realm.o(.rodata.str1.1)
+    .L.str.25                                0x08004020   Data           9  realm.o(.rodata.str1.1)
+    .L.str.8                                 0x08004029   Data          25  realm.o(.rodata.str1.1)
+    .L.str.9                                 0x08004042   Data         755  realm.o(.rodata.str1.1)
+    .L.str.10                                0x08004335   Data         656  realm.o(.rodata.str1.1)
+    .L.str.11                                0x080045c5   Data        3070  realm.o(.rodata.str1.1)
+    .L.str.12                                0x080051c3   Data         676  realm.o(.rodata.str1.1)
+    .L.str.48                                0x08005467   Data           6  realm.o(.rodata.str1.1)
+    .L.str.47                                0x0800546d   Data           4  realm.o(.rodata.str1.1)
+    .L.str.13                                0x08005471   Data          29  realm.o(.rodata.str1.1)
+    .L.str.49                                0x0800548e   Data           6  realm.o(.rodata.str1.1)
+    .L.str.38                                0x08005494   Data          29  realm.o(.rodata.str1.1)
+    .L.str.37                                0x080054b1   Data          37  realm.o(.rodata.str1.1)
+    .L.str.39                                0x080054d6   Data          24  realm.o(.rodata.str1.1)
+    .L.str.46                                0x080054ee   Data           6  realm.o(.rodata.str1.1)
     shift_register                           0x20000000   Data           4  realm.o(.data.shift_register)
     [Anonymous Symbol]                       0x20000000   Section        0  realm.o(.data.shift_register)
     .bss                                     0x20000008   Section       96  libspace.o(.bss)
@@ -912,52 +965,52 @@ Image Symbol Table
     ADCRead                                  0x08000b81   Thumb Code    28  stm32l031lib.o(.text.ADCRead)
     Audio_Handler                            0x08000b9d   Thumb Code   240  music.o(.text.Audio_Handler)
     Delay_Handler                            0x08000c8d   Thumb Code    16  stm32l031lib.o(.text.Delay_Handler)
-    Health_Display_Handler                   0x08000c9d   Thumb Code   212  realm.o(.text.Health_Display_Handler)
-    SysTick_Handler                          0x08000d71   Thumb Code    16  main.o(.text.SysTick_Handler)
-    SystemInit                               0x08000d81   Thumb Code    80  system_stm32l0xx.o(.text.SystemInit)
-    addWeapon                                0x08000dd1   Thumb Code   268  realm.o(.text.addWeapon)
-    delay                                    0x08000edd   Thumb Code   148  stm32l031lib.o(.text.delay)
-    doChallenge                              0x08000f71   Thumb Code   748  realm.o(.text.doChallenge)
-    egetchar                                 0x0800125d   Thumb Code    16  stm32l031lib.o(.text.egetchar)
-    enablePullUp                             0x0800126d   Thumb Code    24  stm32l031lib.o(.text.enablePullUp)
-    eputchar                                 0x08001285   Thumb Code    16  stm32l031lib.o(.text.eputchar)
-    eputs                                    0x08001295   Thumb Code    28  stm32l031lib.o(.text.eputs)
-    getKeypadValue                           0x080012b1   Thumb Code   196  stm32l031lib.o(.text.getKeypadValue)
-    getUserInput                             0x08001375   Thumb Code   432  realm.o(.text.getUserInput)
-    getWeaponName                            0x08001525   Thumb Code    40  realm.o(.text.getWeaponName)
-    initAudio                                0x0800154d   Thumb Code    40  music.o(.text.initAudio)
-    initClock                                0x08001575   Thumb Code    52  stm32l031lib.o(.text.initClock)
-    initKeypad                               0x080015a9   Thumb Code   104  stm32l031lib.o(.text.initKeypad)
-    initPins                                 0x08001611   Thumb Code   124  stm32l031lib.o(.text.initPins)
-    initPlayer                               0x0800168d   Thumb Code   232  realm.o(.text.initPlayer)
-    initRGBLED                               0x08001775   Thumb Code    36  stm32l031lib.o(.text.initRGBLED)
-    initRealm                                0x08001799   Thumb Code   124  realm.o(.text.initRealm)
-    initSerial                               0x08001815   Thumb Code   148  stm32l031lib.o(.text.initSerial)
-    main                                     0x080018a9   Thumb Code    36  main.o(.text.main)
-    pinMode                                  0x080018cd   Thumb Code    18  stm32l031lib.o(.text.pinMode)
-    playMusic                                0x080018e1   Thumb Code    28  music.o(.text.playMusic)
-    playSFX                                  0x080018fd   Thumb Code    20  music.o(.text.playSFX)
-    prbs                                     0x08001911   Thumb Code    52  realm.o(.text.prbs)
-    printDecimal                             0x08001945   Thumb Code    62  stm32l031lib.o(.text.printDecimal)
-    random                                   0x08001983   Thumb Code    20  realm.o(.text.random)
-    randomize                                0x08001999   Thumb Code    52  realm.o(.text.randomize)
-    readPin                                  0x080019cd   Thumb Code    10  stm32l031lib.o(.text.readPin)
-    runGame                                  0x080019d9   Thumb Code   564  realm.o(.text.runGame)
-    setHealth                                0x08001c0d   Thumb Code    14  realm.o(.text.setHealth)
-    setPinHigh                               0x08001c1b   Thumb Code    12  stm32l031lib.o(.text.setPinHigh)
-    setPinLow                                0x08001c27   Thumb Code    12  stm32l031lib.o(.text.setPinLow)
-    setRGBLED                                0x08001c33   Thumb Code    82  stm32l031lib.o(.text.setRGBLED)
-    setStrength                              0x08001c85   Thumb Code    10  realm.o(.text.setStrength)
-    showGameMessage                          0x08001c91   Thumb Code    28  realm.o(.text.showGameMessage)
-    showHelp                                 0x08001cad   Thumb Code   152  realm.o(.text.showHelp)
-    showPlayer                               0x08001d45   Thumb Code   272  realm.o(.text.showPlayer)
-    showRealm                                0x08001e55   Thumb Code   216  realm.o(.text.showRealm)
-    step                                     0x08001f2d   Thumb Code   600  realm.o(.text.step)
-    __aeabi_uidiv                            0x08002185   Thumb Code    68  aeabi_sdivfast.o(.text_divfast)
-    __aeabi_idiv                             0x080021c9   Thumb Code   434  aeabi_sdivfast.o(.text_divfast)
-    __I$use$fp                               0x0800237a   Number         0  usenofp.o(x$fpl$usenofp)
-    Region$$Table$$Base                      0x0800392c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0800394c   Number         0  anon$$obj.o(Region$$Table)
+    Health_Display_Handler                   0x08000c9d   Thumb Code   224  realm.o(.text.Health_Display_Handler)
+    SysTick_Handler                          0x08000d7d   Thumb Code    16  main.o(.text.SysTick_Handler)
+    SystemInit                               0x08000d8d   Thumb Code    80  system_stm32l0xx.o(.text.SystemInit)
+    addWeapon                                0x08000ddd   Thumb Code   268  realm.o(.text.addWeapon)
+    delay                                    0x08000ee9   Thumb Code   148  stm32l031lib.o(.text.delay)
+    doChallenge                              0x08000f7d   Thumb Code  1032  realm.o(.text.doChallenge)
+    egetchar                                 0x08001385   Thumb Code    16  stm32l031lib.o(.text.egetchar)
+    enablePullUp                             0x08001395   Thumb Code    24  stm32l031lib.o(.text.enablePullUp)
+    eputchar                                 0x080013ad   Thumb Code    16  stm32l031lib.o(.text.eputchar)
+    eputs                                    0x080013bd   Thumb Code    28  stm32l031lib.o(.text.eputs)
+    getKeypadValue                           0x080013d9   Thumb Code   196  stm32l031lib.o(.text.getKeypadValue)
+    getUserInput                             0x0800149d   Thumb Code   432  realm.o(.text.getUserInput)
+    getWeaponName                            0x0800164d   Thumb Code    40  realm.o(.text.getWeaponName)
+    initAudio                                0x08001675   Thumb Code    40  music.o(.text.initAudio)
+    initClock                                0x0800169d   Thumb Code    52  stm32l031lib.o(.text.initClock)
+    initKeypad                               0x080016d1   Thumb Code   104  stm32l031lib.o(.text.initKeypad)
+    initPins                                 0x08001739   Thumb Code   124  stm32l031lib.o(.text.initPins)
+    initPlayer                               0x080017b5   Thumb Code   232  realm.o(.text.initPlayer)
+    initRGBLED                               0x0800189d   Thumb Code    36  stm32l031lib.o(.text.initRGBLED)
+    initRealm                                0x080018c1   Thumb Code   124  realm.o(.text.initRealm)
+    initSerial                               0x0800193d   Thumb Code   148  stm32l031lib.o(.text.initSerial)
+    main                                     0x080019d1   Thumb Code    36  main.o(.text.main)
+    pinMode                                  0x080019f5   Thumb Code    18  stm32l031lib.o(.text.pinMode)
+    playMusic                                0x08001a09   Thumb Code    28  music.o(.text.playMusic)
+    playSFX                                  0x08001a25   Thumb Code    20  music.o(.text.playSFX)
+    prbs                                     0x08001a39   Thumb Code    52  realm.o(.text.prbs)
+    printDecimal                             0x08001a6d   Thumb Code    62  stm32l031lib.o(.text.printDecimal)
+    random                                   0x08001aab   Thumb Code    20  realm.o(.text.random)
+    randomize                                0x08001ac1   Thumb Code    52  realm.o(.text.randomize)
+    readPin                                  0x08001af5   Thumb Code    10  stm32l031lib.o(.text.readPin)
+    runGame                                  0x08001b01   Thumb Code   568  realm.o(.text.runGame)
+    setHealth                                0x08001d39   Thumb Code    14  realm.o(.text.setHealth)
+    setPinHigh                               0x08001d47   Thumb Code    12  stm32l031lib.o(.text.setPinHigh)
+    setPinLow                                0x08001d53   Thumb Code    12  stm32l031lib.o(.text.setPinLow)
+    setRGBLED                                0x08001d5f   Thumb Code    82  stm32l031lib.o(.text.setRGBLED)
+    setStrength                              0x08001db1   Thumb Code    10  realm.o(.text.setStrength)
+    showGameMessage                          0x08001dbd   Thumb Code    32  realm.o(.text.showGameMessage)
+    showHelp                                 0x08001ddd   Thumb Code    16  realm.o(.text.showHelp)
+    showPlayer                               0x08001ded   Thumb Code   320  realm.o(.text.showPlayer)
+    showRealm                                0x08001f2d   Thumb Code    96  realm.o(.text.showRealm)
+    step                                     0x08001f8d   Thumb Code   648  realm.o(.text.step)
+    __aeabi_uidiv                            0x08002215   Thumb Code    68  aeabi_sdivfast.o(.text_divfast)
+    __aeabi_idiv                             0x08002259   Thumb Code   434  aeabi_sdivfast.o(.text_divfast)
+    __I$use$fp                               0x0800240a   Number         0  usenofp.o(x$fpl$usenofp)
+    Region$$Table$$Base                      0x080054f4   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08005514   Number         0  anon$$obj.o(Region$$Table)
     __libspace_start                         0x20000008   Data          96  libspace.o(.bss)
     __temporary_stack_top$libspace           0x20000068   Data           0  libspace.o(.bss)
 
@@ -969,184 +1022,189 @@ Memory Map of the image
 
   Image Entry point : 0x08000165
 
-  Load Region LR_1 (Base: 0x08000000, Size: 0x00003950, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x08000000, Size: 0x00005518, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000394c, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00005514, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x08000000   0x08000000   0x000000c0   Data   RO          159    RESET               startup_stm32l031xx.o
-    0x080000c0   0x080000c0   0x00000008   Code   RO          194  * !!!main             c_p.l(__main.o)
-    0x080000c8   0x080000c8   0x0000003c   Code   RO          379    !!!scatter          c_p.l(__scatter.o)
-    0x08000104   0x08000104   0x0000001a   Code   RO          381    !!handler_copy      c_p.l(__scatter_copy.o)
+    0x08000000   0x08000000   0x000000c0   Data   RO          165    RESET               startup_stm32l031xx.o
+    0x080000c0   0x080000c0   0x00000008   Code   RO          200  * !!!main             c_p.l(__main.o)
+    0x080000c8   0x080000c8   0x0000003c   Code   RO          385    !!!scatter          c_p.l(__scatter.o)
+    0x08000104   0x08000104   0x0000001a   Code   RO          387    !!handler_copy      c_p.l(__scatter_copy.o)
     0x0800011e   0x0800011e   0x00000002   PAD
-    0x08000120   0x08000120   0x0000001c   Code   RO          383    !!handler_zi        c_p.l(__scatter_zi.o)
-    0x0800013c   0x0800013c   0x00000002   Code   RO          242    .ARM.Collect$$libinit$$00000000  c_p.l(libinit.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          256    .ARM.Collect$$libinit$$00000002  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          258    .ARM.Collect$$libinit$$00000004  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          261    .ARM.Collect$$libinit$$0000000A  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          263    .ARM.Collect$$libinit$$0000000C  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          265    .ARM.Collect$$libinit$$0000000E  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          268    .ARM.Collect$$libinit$$00000011  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          270    .ARM.Collect$$libinit$$00000013  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          272    .ARM.Collect$$libinit$$00000015  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          274    .ARM.Collect$$libinit$$00000017  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          276    .ARM.Collect$$libinit$$00000019  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          278    .ARM.Collect$$libinit$$0000001B  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          280    .ARM.Collect$$libinit$$0000001D  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          282    .ARM.Collect$$libinit$$0000001F  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          284    .ARM.Collect$$libinit$$00000021  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          286    .ARM.Collect$$libinit$$00000023  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          288    .ARM.Collect$$libinit$$00000025  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          292    .ARM.Collect$$libinit$$0000002C  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          294    .ARM.Collect$$libinit$$0000002E  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          296    .ARM.Collect$$libinit$$00000030  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000000   Code   RO          298    .ARM.Collect$$libinit$$00000032  c_p.l(libinit2.o)
-    0x0800013e   0x0800013e   0x00000002   Code   RO          299    .ARM.Collect$$libinit$$00000033  c_p.l(libinit2.o)
-    0x08000140   0x08000140   0x00000002   Code   RO          334    .ARM.Collect$$libshutdown$$00000000  c_p.l(libshutdown.o)
-    0x08000142   0x08000142   0x00000000   Code   RO          362    .ARM.Collect$$libshutdown$$00000002  c_p.l(libshutdown2.o)
-    0x08000142   0x08000142   0x00000000   Code   RO          364    .ARM.Collect$$libshutdown$$00000004  c_p.l(libshutdown2.o)
-    0x08000142   0x08000142   0x00000000   Code   RO          367    .ARM.Collect$$libshutdown$$00000007  c_p.l(libshutdown2.o)
-    0x08000142   0x08000142   0x00000000   Code   RO          370    .ARM.Collect$$libshutdown$$0000000A  c_p.l(libshutdown2.o)
-    0x08000142   0x08000142   0x00000000   Code   RO          372    .ARM.Collect$$libshutdown$$0000000C  c_p.l(libshutdown2.o)
-    0x08000142   0x08000142   0x00000000   Code   RO          375    .ARM.Collect$$libshutdown$$0000000F  c_p.l(libshutdown2.o)
-    0x08000142   0x08000142   0x00000002   Code   RO          376    .ARM.Collect$$libshutdown$$00000010  c_p.l(libshutdown2.o)
-    0x08000144   0x08000144   0x00000000   Code   RO          205    .ARM.Collect$$rtentry$$00000000  c_p.l(__rtentry.o)
-    0x08000144   0x08000144   0x00000000   Code   RO          212    .ARM.Collect$$rtentry$$00000002  c_p.l(__rtentry2.o)
-    0x08000144   0x08000144   0x00000006   Code   RO          224    .ARM.Collect$$rtentry$$00000004  c_p.l(__rtentry4.o)
-    0x0800014a   0x0800014a   0x00000000   Code   RO          214    .ARM.Collect$$rtentry$$00000009  c_p.l(__rtentry2.o)
-    0x0800014a   0x0800014a   0x00000004   Code   RO          215    .ARM.Collect$$rtentry$$0000000A  c_p.l(__rtentry2.o)
-    0x0800014e   0x0800014e   0x00000000   Code   RO          217    .ARM.Collect$$rtentry$$0000000C  c_p.l(__rtentry2.o)
-    0x0800014e   0x0800014e   0x00000008   Code   RO          218    .ARM.Collect$$rtentry$$0000000D  c_p.l(__rtentry2.o)
-    0x08000156   0x08000156   0x00000002   Code   RO          247    .ARM.Collect$$rtexit$$00000000  c_p.l(rtexit.o)
-    0x08000158   0x08000158   0x00000000   Code   RO          305    .ARM.Collect$$rtexit$$00000002  c_p.l(rtexit2.o)
-    0x08000158   0x08000158   0x00000004   Code   RO          306    .ARM.Collect$$rtexit$$00000003  c_p.l(rtexit2.o)
-    0x0800015c   0x0800015c   0x00000006   Code   RO          307    .ARM.Collect$$rtexit$$00000004  c_p.l(rtexit2.o)
+    0x08000120   0x08000120   0x0000001c   Code   RO          389    !!handler_zi        c_p.l(__scatter_zi.o)
+    0x0800013c   0x0800013c   0x00000002   Code   RO          248    .ARM.Collect$$libinit$$00000000  c_p.l(libinit.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          262    .ARM.Collect$$libinit$$00000002  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          264    .ARM.Collect$$libinit$$00000004  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          267    .ARM.Collect$$libinit$$0000000A  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          269    .ARM.Collect$$libinit$$0000000C  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          271    .ARM.Collect$$libinit$$0000000E  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          274    .ARM.Collect$$libinit$$00000011  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          276    .ARM.Collect$$libinit$$00000013  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          278    .ARM.Collect$$libinit$$00000015  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          280    .ARM.Collect$$libinit$$00000017  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          282    .ARM.Collect$$libinit$$00000019  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          284    .ARM.Collect$$libinit$$0000001B  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          286    .ARM.Collect$$libinit$$0000001D  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          288    .ARM.Collect$$libinit$$0000001F  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          290    .ARM.Collect$$libinit$$00000021  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          292    .ARM.Collect$$libinit$$00000023  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          294    .ARM.Collect$$libinit$$00000025  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          298    .ARM.Collect$$libinit$$0000002C  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          300    .ARM.Collect$$libinit$$0000002E  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          302    .ARM.Collect$$libinit$$00000030  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000000   Code   RO          304    .ARM.Collect$$libinit$$00000032  c_p.l(libinit2.o)
+    0x0800013e   0x0800013e   0x00000002   Code   RO          305    .ARM.Collect$$libinit$$00000033  c_p.l(libinit2.o)
+    0x08000140   0x08000140   0x00000002   Code   RO          340    .ARM.Collect$$libshutdown$$00000000  c_p.l(libshutdown.o)
+    0x08000142   0x08000142   0x00000000   Code   RO          368    .ARM.Collect$$libshutdown$$00000002  c_p.l(libshutdown2.o)
+    0x08000142   0x08000142   0x00000000   Code   RO          370    .ARM.Collect$$libshutdown$$00000004  c_p.l(libshutdown2.o)
+    0x08000142   0x08000142   0x00000000   Code   RO          373    .ARM.Collect$$libshutdown$$00000007  c_p.l(libshutdown2.o)
+    0x08000142   0x08000142   0x00000000   Code   RO          376    .ARM.Collect$$libshutdown$$0000000A  c_p.l(libshutdown2.o)
+    0x08000142   0x08000142   0x00000000   Code   RO          378    .ARM.Collect$$libshutdown$$0000000C  c_p.l(libshutdown2.o)
+    0x08000142   0x08000142   0x00000000   Code   RO          381    .ARM.Collect$$libshutdown$$0000000F  c_p.l(libshutdown2.o)
+    0x08000142   0x08000142   0x00000002   Code   RO          382    .ARM.Collect$$libshutdown$$00000010  c_p.l(libshutdown2.o)
+    0x08000144   0x08000144   0x00000000   Code   RO          211    .ARM.Collect$$rtentry$$00000000  c_p.l(__rtentry.o)
+    0x08000144   0x08000144   0x00000000   Code   RO          218    .ARM.Collect$$rtentry$$00000002  c_p.l(__rtentry2.o)
+    0x08000144   0x08000144   0x00000006   Code   RO          230    .ARM.Collect$$rtentry$$00000004  c_p.l(__rtentry4.o)
+    0x0800014a   0x0800014a   0x00000000   Code   RO          220    .ARM.Collect$$rtentry$$00000009  c_p.l(__rtentry2.o)
+    0x0800014a   0x0800014a   0x00000004   Code   RO          221    .ARM.Collect$$rtentry$$0000000A  c_p.l(__rtentry2.o)
+    0x0800014e   0x0800014e   0x00000000   Code   RO          223    .ARM.Collect$$rtentry$$0000000C  c_p.l(__rtentry2.o)
+    0x0800014e   0x0800014e   0x00000008   Code   RO          224    .ARM.Collect$$rtentry$$0000000D  c_p.l(__rtentry2.o)
+    0x08000156   0x08000156   0x00000002   Code   RO          253    .ARM.Collect$$rtexit$$00000000  c_p.l(rtexit.o)
+    0x08000158   0x08000158   0x00000000   Code   RO          311    .ARM.Collect$$rtexit$$00000002  c_p.l(rtexit2.o)
+    0x08000158   0x08000158   0x00000004   Code   RO          312    .ARM.Collect$$rtexit$$00000003  c_p.l(rtexit2.o)
+    0x0800015c   0x0800015c   0x00000006   Code   RO          313    .ARM.Collect$$rtexit$$00000004  c_p.l(rtexit2.o)
     0x08000162   0x08000162   0x00000002   PAD
-    0x08000164   0x08000164   0x00000038   Code   RO          160  * .text               startup_stm32l031xx.o
-    0x0800019c   0x0800019c   0x000001f8   Code   RO          184    .text               c_p.l(aeabi_sdivfast.o)
-    0x08000394   0x08000394   0x00000006   Code   RO          192    .text               c_p.l(heapauxi.o)
+    0x08000164   0x08000164   0x00000038   Code   RO          166  * .text               startup_stm32l031xx.o
+    0x0800019c   0x0800019c   0x000001f8   Code   RO          190    .text               c_p.l(aeabi_sdivfast.o)
+    0x08000394   0x08000394   0x00000006   Code   RO          198    .text               c_p.l(heapauxi.o)
     0x0800039a   0x0800039a   0x00000002   PAD
-    0x0800039c   0x0800039c   0x00000448   Code   RO          196    .text               fz_ps.l(ddiv.o)
-    0x080007e4   0x080007e4   0x00000048   Code   RO          199    .text               fz_ps.l(dfixui.o)
-    0x0800082c   0x0800082c   0x00000058   Code   RO          201    .text               fz_ps.l(dflti.o)
-    0x08000884   0x08000884   0x00000248   Code   RO          203    .text               fz_ps.l(dmul.o)
-    0x08000acc   0x08000acc   0x0000003e   Code   RO          228    .text               c_p.l(sys_stackheap_outer.o)
-    0x08000b0a   0x08000b0a   0x00000010   Code   RO          231    .text               c_p.l(exit.o)
+    0x0800039c   0x0800039c   0x00000448   Code   RO          202    .text               fz_ps.l(ddiv.o)
+    0x080007e4   0x080007e4   0x00000048   Code   RO          205    .text               fz_ps.l(dfixui.o)
+    0x0800082c   0x0800082c   0x00000058   Code   RO          207    .text               fz_ps.l(dflti.o)
+    0x08000884   0x08000884   0x00000248   Code   RO          209    .text               fz_ps.l(dmul.o)
+    0x08000acc   0x08000acc   0x0000003e   Code   RO          234    .text               c_p.l(sys_stackheap_outer.o)
+    0x08000b0a   0x08000b0a   0x00000010   Code   RO          237    .text               c_p.l(exit.o)
     0x08000b1a   0x08000b1a   0x00000002   PAD
-    0x08000b1c   0x08000b1c   0x00000008   Code   RO          243    .text               c_p.l(libspace.o)
-    0x08000b24   0x08000b24   0x0000000c   Code   RO          300    .text               c_p.l(sys_exit.o)
-    0x08000b30   0x08000b30   0x00000002   Code   RO          323    .text               c_p.l(use_no_semi.o)
-    0x08000b32   0x08000b32   0x00000000   Code   RO          325    .text               c_p.l(indicate_semi.o)
+    0x08000b1c   0x08000b1c   0x00000008   Code   RO          249    .text               c_p.l(libspace.o)
+    0x08000b24   0x08000b24   0x0000000c   Code   RO          306    .text               c_p.l(sys_exit.o)
+    0x08000b30   0x08000b30   0x00000002   Code   RO          329    .text               c_p.l(use_no_semi.o)
+    0x08000b32   0x08000b32   0x00000000   Code   RO          331    .text               c_p.l(indicate_semi.o)
     0x08000b32   0x08000b32   0x00000002   PAD
     0x08000b34   0x08000b34   0x0000004c   Code   RO           16    .text.ADCBegin      stm32l031lib.o
     0x08000b80   0x08000b80   0x0000001c   Code   RO           18    .text.ADCRead       stm32l031lib.o
-    0x08000b9c   0x08000b9c   0x000000f0   Code   RO          138    .text.Audio_Handler  music.o
+    0x08000b9c   0x08000b9c   0x000000f0   Code   RO          144    .text.Audio_Handler  music.o
     0x08000c8c   0x08000c8c   0x00000010   Code   RO            4    .text.Delay_Handler  stm32l031lib.o
-    0x08000c9c   0x08000c9c   0x000000d4   Code   RO          100    .text.Health_Display_Handler  realm.o
-    0x08000d70   0x08000d70   0x00000010   Code   RO           54    .text.SysTick_Handler  main.o
-    0x08000d80   0x08000d80   0x00000050   Code   RO          167    .text.SystemInit    system_stm32l0xx.o
-    0x08000dd0   0x08000dd0   0x0000010c   Code   RO           90    .text.addWeapon     realm.o
-    0x08000edc   0x08000edc   0x00000094   Code   RO            6    .text.delay         stm32l031lib.o
-    0x08000f70   0x08000f70   0x000002ec   Code   RO           84    .text.doChallenge   realm.o
-    0x0800125c   0x0800125c   0x00000010   Code   RO           26    .text.egetchar      stm32l031lib.o
-    0x0800126c   0x0800126c   0x00000018   Code   RO            8    .text.enablePullUp  stm32l031lib.o
-    0x08001284   0x08001284   0x00000010   Code   RO           24    .text.eputchar      stm32l031lib.o
-    0x08001294   0x08001294   0x0000001c   Code   RO           28    .text.eputs         stm32l031lib.o
-    0x080012b0   0x080012b0   0x000000c4   Code   RO           38    .text.getKeypadValue  stm32l031lib.o
-    0x08001374   0x08001374   0x000001b0   Code   RO           72    .text.getUserInput  realm.o
-    0x08001524   0x08001524   0x00000028   Code   RO           94    .text.getWeaponName  realm.o
-    0x0800154c   0x0800154c   0x00000028   Code   RO          132    .text.initAudio     music.o
-    0x08001574   0x08001574   0x00000034   Code   RO           20    .text.initClock     stm32l031lib.o
-    0x080015a8   0x080015a8   0x00000068   Code   RO           34    .text.initKeypad    stm32l031lib.o
-    0x08001610   0x08001610   0x0000007c   Code   RO           32    .text.initPins      stm32l031lib.o
-    0x0800168c   0x0800168c   0x000000e8   Code   RO           76    .text.initPlayer    realm.o
-    0x08001774   0x08001774   0x00000024   Code   RO           36    .text.initRGBLED    stm32l031lib.o
-    0x08001798   0x08001798   0x0000007c   Code   RO           74    .text.initRealm     realm.o
-    0x08001814   0x08001814   0x00000094   Code   RO           22    .text.initSerial    stm32l031lib.o
-    0x080018a8   0x080018a8   0x00000024   Code   RO           52    .text.main          main.o
-    0x080018cc   0x080018cc   0x00000012   Code   RO            2    .text.pinMode       stm32l031lib.o
-    0x080018de   0x080018de   0x00000002   PAD
-    0x080018e0   0x080018e0   0x0000001c   Code   RO          134    .text.playMusic     music.o
-    0x080018fc   0x080018fc   0x00000014   Code   RO          136    .text.playSFX       music.o
-    0x08001910   0x08001910   0x00000034   Code   RO           98    .text.prbs          realm.o
-    0x08001944   0x08001944   0x0000003e   Code   RO           30    .text.printDecimal  stm32l031lib.o
-    0x08001982   0x08001982   0x00000014   Code   RO           92    .text.random        realm.o
-    0x08001996   0x08001996   0x00000002   PAD
-    0x08001998   0x08001998   0x00000034   Code   RO           66    .text.randomize     realm.o
-    0x080019cc   0x080019cc   0x0000000a   Code   RO           14    .text.readPin       stm32l031lib.o
-    0x080019d6   0x080019d6   0x00000002   PAD
-    0x080019d8   0x080019d8   0x00000234   Code   RO           64    .text.runGame       realm.o
-    0x08001c0c   0x08001c0c   0x0000000e   Code   RO           86    .text.setHealth     realm.o
-    0x08001c1a   0x08001c1a   0x0000000c   Code   RO           12    .text.setPinHigh    stm32l031lib.o
-    0x08001c26   0x08001c26   0x0000000c   Code   RO           10    .text.setPinLow     stm32l031lib.o
-    0x08001c32   0x08001c32   0x00000052   Code   RO           40    .text.setRGBLED     stm32l031lib.o
-    0x08001c84   0x08001c84   0x0000000a   Code   RO           88    .text.setStrength   realm.o
-    0x08001c8e   0x08001c8e   0x00000002   PAD
-    0x08001c90   0x08001c90   0x0000001c   Code   RO           70    .text.showGameMessage  realm.o
-    0x08001cac   0x08001cac   0x00000098   Code   RO           68    .text.showHelp      realm.o
-    0x08001d44   0x08001d44   0x00000110   Code   RO           78    .text.showPlayer    realm.o
-    0x08001e54   0x08001e54   0x000000d8   Code   RO           80    .text.showRealm     realm.o
-    0x08001f2c   0x08001f2c   0x00000258   Code   RO           82    .text.step          realm.o
-    0x08002184   0x08002184   0x000001f6   Code   RO          185    .text_divfast       c_p.l(aeabi_sdivfast.o)
-    0x0800237a   0x0800237a   0x00000000   Code   RO          210    x$fpl$usenofp       fz_ps.l(usenofp.o)
-    0x0800237a   0x0800237a   0x00000080   Data   RO          197    .constdata          fz_ps.l(ddiv.o)
-    0x080023fa   0x080023fa   0x00000002   PAD
-    0x080023fc   0x080023fc   0x00000020   Data   RO          111    .rodata.SFXBeep     realm.o
-    0x0800241c   0x0800241c   0x00000028   Data   RO          105    .rodata.SFXBeepTwo  realm.o
-    0x08002444   0x08002444   0x00000030   Data   RO          110    .rodata.SFXBlocked  realm.o
-    0x08002474   0x08002474   0x00000100   Data   RO          115    .rodata.SFXDefeat   realm.o
-    0x08002574   0x08002574   0x00000038   Data   RO          109    .rodata.SFXLowHealth  realm.o
-    0x080025ac   0x080025ac   0x00000058   Data   RO          112    .rodata.SFXSecret   realm.o
-    0x08002604   0x08002604   0x00000028   Data   RO          117    .rodata.SFXType     realm.o
-    0x0800262c   0x0800262c   0x00000068   Data   RO          116    .rodata.SFXVictory  realm.o
-    0x08002694   0x08002694   0x00000008   Data   RO          142    .rodata.audioNULL   music.o
-    0x0800269c   0x0800269c   0x00000010   Data   RO          114    .rodata.cst16       realm.o
-    0x080026ac   0x080026ac   0x00000500   Data   RO          113    .rodata.musicCombat  realm.o
-    0x08002bac   0x08002bac   0x00000908   Data   RO          108    .rodata.musicExplore  realm.o
-    0x080034b4   0x080034b4   0x000001b8   Data   RO          102    .rodata.musicTitle  realm.o
-    0x0800366c   0x0800366c   0x000002bd   Data   RO          103    .rodata.str1.1      realm.o
-    0x08003929   0x08003929   0x00000003   PAD
-    0x0800392c   0x0800392c   0x00000020   Data   RO          378    Region$$Table       anon$$obj.o
+    0x08000c9c   0x08000c9c   0x000000e0   Code   RO          100    .text.Health_Display_Handler  realm.o
+    0x08000d7c   0x08000d7c   0x00000010   Code   RO           54    .text.SysTick_Handler  main.o
+    0x08000d8c   0x08000d8c   0x00000050   Code   RO          173    .text.SystemInit    system_stm32l0xx.o
+    0x08000ddc   0x08000ddc   0x0000010c   Code   RO           90    .text.addWeapon     realm.o
+    0x08000ee8   0x08000ee8   0x00000094   Code   RO            6    .text.delay         stm32l031lib.o
+    0x08000f7c   0x08000f7c   0x00000408   Code   RO           84    .text.doChallenge   realm.o
+    0x08001384   0x08001384   0x00000010   Code   RO           26    .text.egetchar      stm32l031lib.o
+    0x08001394   0x08001394   0x00000018   Code   RO            8    .text.enablePullUp  stm32l031lib.o
+    0x080013ac   0x080013ac   0x00000010   Code   RO           24    .text.eputchar      stm32l031lib.o
+    0x080013bc   0x080013bc   0x0000001c   Code   RO           28    .text.eputs         stm32l031lib.o
+    0x080013d8   0x080013d8   0x000000c4   Code   RO           38    .text.getKeypadValue  stm32l031lib.o
+    0x0800149c   0x0800149c   0x000001b0   Code   RO           72    .text.getUserInput  realm.o
+    0x0800164c   0x0800164c   0x00000028   Code   RO           94    .text.getWeaponName  realm.o
+    0x08001674   0x08001674   0x00000028   Code   RO          138    .text.initAudio     music.o
+    0x0800169c   0x0800169c   0x00000034   Code   RO           20    .text.initClock     stm32l031lib.o
+    0x080016d0   0x080016d0   0x00000068   Code   RO           34    .text.initKeypad    stm32l031lib.o
+    0x08001738   0x08001738   0x0000007c   Code   RO           32    .text.initPins      stm32l031lib.o
+    0x080017b4   0x080017b4   0x000000e8   Code   RO           76    .text.initPlayer    realm.o
+    0x0800189c   0x0800189c   0x00000024   Code   RO           36    .text.initRGBLED    stm32l031lib.o
+    0x080018c0   0x080018c0   0x0000007c   Code   RO           74    .text.initRealm     realm.o
+    0x0800193c   0x0800193c   0x00000094   Code   RO           22    .text.initSerial    stm32l031lib.o
+    0x080019d0   0x080019d0   0x00000024   Code   RO           52    .text.main          main.o
+    0x080019f4   0x080019f4   0x00000012   Code   RO            2    .text.pinMode       stm32l031lib.o
+    0x08001a06   0x08001a06   0x00000002   PAD
+    0x08001a08   0x08001a08   0x0000001c   Code   RO          140    .text.playMusic     music.o
+    0x08001a24   0x08001a24   0x00000014   Code   RO          142    .text.playSFX       music.o
+    0x08001a38   0x08001a38   0x00000034   Code   RO           98    .text.prbs          realm.o
+    0x08001a6c   0x08001a6c   0x0000003e   Code   RO           30    .text.printDecimal  stm32l031lib.o
+    0x08001aaa   0x08001aaa   0x00000014   Code   RO           92    .text.random        realm.o
+    0x08001abe   0x08001abe   0x00000002   PAD
+    0x08001ac0   0x08001ac0   0x00000034   Code   RO           66    .text.randomize     realm.o
+    0x08001af4   0x08001af4   0x0000000a   Code   RO           14    .text.readPin       stm32l031lib.o
+    0x08001afe   0x08001afe   0x00000002   PAD
+    0x08001b00   0x08001b00   0x00000238   Code   RO           64    .text.runGame       realm.o
+    0x08001d38   0x08001d38   0x0000000e   Code   RO           86    .text.setHealth     realm.o
+    0x08001d46   0x08001d46   0x0000000c   Code   RO           12    .text.setPinHigh    stm32l031lib.o
+    0x08001d52   0x08001d52   0x0000000c   Code   RO           10    .text.setPinLow     stm32l031lib.o
+    0x08001d5e   0x08001d5e   0x00000052   Code   RO           40    .text.setRGBLED     stm32l031lib.o
+    0x08001db0   0x08001db0   0x0000000a   Code   RO           88    .text.setStrength   realm.o
+    0x08001dba   0x08001dba   0x00000002   PAD
+    0x08001dbc   0x08001dbc   0x00000020   Code   RO           70    .text.showGameMessage  realm.o
+    0x08001ddc   0x08001ddc   0x00000010   Code   RO           68    .text.showHelp      realm.o
+    0x08001dec   0x08001dec   0x00000140   Code   RO           78    .text.showPlayer    realm.o
+    0x08001f2c   0x08001f2c   0x00000060   Code   RO           80    .text.showRealm     realm.o
+    0x08001f8c   0x08001f8c   0x00000288   Code   RO           82    .text.step          realm.o
+    0x08002214   0x08002214   0x000001f6   Code   RO          191    .text_divfast       c_p.l(aeabi_sdivfast.o)
+    0x0800240a   0x0800240a   0x00000000   Code   RO          216    x$fpl$usenofp       fz_ps.l(usenofp.o)
+    0x0800240a   0x0800240a   0x00000080   Data   RO          203    .constdata          fz_ps.l(ddiv.o)
+    0x0800248a   0x0800248a   0x00000002   PAD
+    0x0800248c   0x0800248c   0x00000070   Data   RO          117    .rodata.SFXAttack   realm.o
+    0x080024fc   0x080024fc   0x00000020   Data   RO          111    .rodata.SFXBeep     realm.o
+    0x0800251c   0x0800251c   0x00000028   Data   RO          105    .rodata.SFXBeepTwo  realm.o
+    0x08002544   0x08002544   0x00000030   Data   RO          110    .rodata.SFXBlocked  realm.o
+    0x08002574   0x08002574   0x00000100   Data   RO          119    .rodata.SFXDefeat   realm.o
+    0x08002674   0x08002674   0x00000158   Data   RO          114    .rodata.SFXEnemy    realm.o
+    0x080027cc   0x080027cc   0x00000090   Data   RO          112    .rodata.SFXItem     realm.o
+    0x0800285c   0x0800285c   0x00000038   Data   RO          109    .rodata.SFXLowHealth  realm.o
+    0x08002894   0x08002894   0x00000100   Data   RO          129    .rodata.SFXPotion   realm.o
+    0x08002994   0x08002994   0x00000058   Data   RO          113    .rodata.SFXSecret   realm.o
+    0x080029ec   0x080029ec   0x00000098   Data   RO          116    .rodata.SFXSpell    realm.o
+    0x08002a84   0x08002a84   0x00000030   Data   RO          122    .rodata.SFXType     realm.o
+    0x08002ab4   0x08002ab4   0x00000068   Data   RO          121    .rodata.SFXVictory  realm.o
+    0x08002b1c   0x08002b1c   0x00000008   Data   RO          120    .rodata.audioNULL   realm.o
+    0x08002b24   0x08002b24   0x00000008   Data   RO          148    .rodata.audioNULL   music.o
+    0x08002b2c   0x08002b2c   0x00000010   Data   RO          118    .rodata.cst16       realm.o
+    0x08002b3c   0x08002b3c   0x00000500   Data   RO          115    .rodata.musicCombat  realm.o
+    0x0800303c   0x0800303c   0x00000908   Data   RO          108    .rodata.musicExplore  realm.o
+    0x08003944   0x08003944   0x000001b8   Data   RO          102    .rodata.musicTitle  realm.o
+    0x08003afc   0x08003afc   0x000019f8   Data   RO          103    .rodata.str1.1      realm.o
+    0x080054f4   0x080054f4   0x00000020   Data   RO          384    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x0800394c, Size: 0x00000004, Max: 0xffffffff, ABSOLUTE)
-
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x20000000   0x0800394c   0x00000004   Data   RW          119    .data.shift_register  realm.o
-
-
-    Execution Region ER_ZI (Exec base: 0x20000008, Load base: 0x08003950, Size: 0x00000920, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x08005514, Size: 0x00000004, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000008        -       0x00000060   Zero   RW          244    .bss                c_p.l(libspace.o)
-    0x20000068        -       0x00000004   Zero   RW          144    .bss.Audio_Handler.pitch  music.o
-    0x2000006c        -       0x00000004   Zero   RW          143    .bss.Audio_Handler.soundDuration  music.o
+    0x20000000   0x08005514   0x00000004   Data   RW          124    .data.shift_register  realm.o
+
+
+    Execution Region ER_ZI (Exec base: 0x20000008, Load base: 0x08005518, Size: 0x00000920, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000008        -       0x00000060   Zero   RW          250    .bss                c_p.l(libspace.o)
+    0x20000068        -       0x00000004   Zero   RW          150    .bss.Audio_Handler.pitch  music.o
+    0x2000006c        -       0x00000004   Zero   RW          149    .bss.Audio_Handler.soundDuration  music.o
     0x20000070        -       0x00000001   Zero   RW          104    .bss.GameStarted    realm.o
-    0x20000071   0x08003950   0x00000003   PAD
-    0x20000074        -       0x00000004   Zero   RW          123    .bss.Health_Display_Handler.dly  realm.o
-    0x20000078        -       0x00000004   Zero   RW          122    .bss.Health_Display_Handler.onTime  realm.o
-    0x2000007c        -       0x00000004   Zero   RW          120    .bss.Health_Display_Handler.subDly1  realm.o
-    0x20000080        -       0x00000004   Zero   RW          121    .bss.Health_Display_Handler.subDly2  realm.o
-    0x20000084        -       0x00000004   Zero   RW          145    .bss.SFX.0          music.o
-    0x20000088        -       0x00000004   Zero   RW          146    .bss.SFX.2          music.o
+    0x20000071   0x08005518   0x00000003   PAD
+    0x20000074        -       0x00000004   Zero   RW          128    .bss.Health_Display_Handler.dly  realm.o
+    0x20000078        -       0x00000004   Zero   RW          127    .bss.Health_Display_Handler.onTime  realm.o
+    0x2000007c        -       0x00000004   Zero   RW          125    .bss.Health_Display_Handler.subDly1  realm.o
+    0x20000080        -       0x00000004   Zero   RW          126    .bss.Health_Display_Handler.subDly2  realm.o
+    0x20000084        -       0x00000004   Zero   RW          151    .bss.SFX.0          music.o
+    0x20000088        -       0x00000004   Zero   RW          152    .bss.SFX.2          music.o
     0x2000008c        -       0x00000004   Zero   RW           42    .bss.delayDuration  stm32l031lib.o
     0x20000090        -       0x00000001   Zero   RW           43    .bss.getKeypadValue.lastKeyVal  stm32l031lib.o
-    0x20000091   0x08003950   0x00000003   PAD
-    0x20000094        -       0x00000004   Zero   RW          147    .bss.music.0        music.o
-    0x20000098        -       0x00000004   Zero   RW          148    .bss.music.1        music.o
-    0x2000009c        -       0x00000004   Zero   RW          149    .bss.music.2        music.o
-    0x200000a0        -       0x00000001   Zero   RW          118    .bss.prbs.busy      realm.o
-    0x200000a1   0x08003950   0x00000003   PAD
-    0x200000a4        -       0x00000004   Zero   RW          141    .bss.speakerPin     music.o
-    0x200000a8        -       0x00000004   Zero   RW          140    .bss.speakerPort    music.o
+    0x20000091   0x08005518   0x00000003   PAD
+    0x20000094        -       0x00000004   Zero   RW          153    .bss.music.0        music.o
+    0x20000098        -       0x00000004   Zero   RW          154    .bss.music.1        music.o
+    0x2000009c        -       0x00000004   Zero   RW          155    .bss.music.2        music.o
+    0x200000a0        -       0x00000001   Zero   RW          123    .bss.prbs.busy      realm.o
+    0x200000a1   0x08005518   0x00000003   PAD
+    0x200000a4        -       0x00000004   Zero   RW          147    .bss.speakerPin     music.o
+    0x200000a8        -       0x00000004   Zero   RW          146    .bss.speakerPort    music.o
     0x200000ac        -       0x0000001d   Zero   RW          107    .bss.thePlayer      realm.o
     0x200000c9        -       0x00000258   Zero   RW          106    .bss.theRealm       realm.o
-    0x20000321   0x08003950   0x00000007   PAD
-    0x20000328        -       0x00000200   Zero   RW          158    HEAP                startup_stm32l031xx.o
-    0x20000528        -       0x00000400   Zero   RW          157    STACK               startup_stm32l031xx.o
+    0x20000321   0x08005518   0x00000007   PAD
+    0x20000328        -       0x00000200   Zero   RW          164    HEAP                startup_stm32l031xx.o
+    0x20000528        -       0x00000400   Zero   RW          163    STACK               startup_stm32l031xx.o
 
 
 ==============================================================================
@@ -1158,15 +1216,15 @@ Image component sizes
 
         52          4          0          0          0       1305   main.o
        328         72          8          0         36       2558   music.o
-      4036       1576       5413          4        647       9672   realm.o
+      4180       1432      12384          4        647      10104   realm.o
         56         26        192          0       1536        744   startup_stm32l031xx.o
       1208         68          0          0          5       6590   stm32l031lib.o
         80         16          0          0          0       2627   system_stm32l0xx.o
 
     ----------------------------------------------------------------------
-      5768       1762       5648          4       2240      23496   Object Totals
+      5912       1618      12616          4       2240      23928   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-         8          0          3          0         16          0   (incl. Padding)
+         8          0          0          0         16          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1220,15 +1278,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      8890       1838       5778          4       2336      24148   Grand Totals
-      8890       1838       5778          4       2336      24148   ELF Image Totals
-      8890       1838       5778          4          0          0   ROM Totals
+      9034       1694      12746          4       2336      24580   Grand Totals
+      9034       1694      12746          4       2336      24580   ELF Image Totals
+      9034       1694      12746          4          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                14668 (  14.32kB)
+    Total RO  Size (Code + RO Data)                21780 (  21.27kB)
     Total RW  Size (RW Data + ZI Data)              2340 (   2.29kB)
-    Total ROM Size (Code + RO Data + RW Data)      14672 (  14.33kB)
+    Total ROM Size (Code + RO Data + RW Data)      21784 (  21.27kB)
 
 ==============================================================================
 
