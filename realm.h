@@ -45,4 +45,5 @@ int addWeapon(tPlayer *Player, int Weapon);
 int doChallenge(tPlayer *Player, int BadGuyIndex);
 const char *getWeaponName(int index);
 void zap(void);
+void Health_Display_Handler(void);
 #endif

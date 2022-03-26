@@ -71,11 +71,11 @@ void ADCBegin()
 	RCC->IOPENR |= 1; // enable GPIOA
 	pinMode(GPIOA,7,3); // Make GPIOA_7 an analogue input
 
-	ADC1->CR = 0; // dis|able ADC before making changes
+	ADC1->CR = 0; // disable ADC before making changes
 	ADC1->CR |= (1u << 28); // turn on the voltage regulator
 	ADC1->CR |= (1u << 31); // start calibration
 	while ( (ADC1->CR & (1u << 31)) != 0); // Wait for calibration to complete.
-	ADC1->CHSELR = (1 << 7); // select channel4  
+	ADC1->CHSELR = (1 << 7); // select channel7
 	ADC1->CR |= 1; // enable the ADC
 	
 }
@@ -87,6 +87,7 @@ uint16_t ADCRead(void)
 	while ( (ADC1->CR & (1 << 2)) != 0); // Wait for conversion to complete.
 	return (uint16_t)ADC1->DR;
 }
+
 
 // END code added by Adrian Capacite
 
@@ -192,7 +193,10 @@ void initKeypad(struct Pin_Matrix pins)
 // Reads 16 key keypad
 uint8_t getKeypadValue(struct Pin_Matrix pins)
 {	
+	static uint8_t lastKeyVal = 0;
 	uint8_t keyVal = 0;
+
+	// Scan keypad rows and read columns
 	do 
 	{
 		for (uint8_t i = 0; i < KEYPAD_SIZE; i++)
@@ -212,14 +216,20 @@ uint8_t getKeypadValue(struct Pin_Matrix pins)
 				}
 			}
 		}
-		if (keyVal == 0)
+		if (keyVal == 0) 
 		{
-			delay(500);
+			// Limit polling of keypad
+			delay(125);
+			lastKeyVal = 0;
 		}
 	} while (keyVal == 0);
-	eputs("KeyVal: ");
-	printDecimal(keyVal);
-	eputs("\r\n");
+
+	// If user is still holding key down, return 0
+	if (keyVal == lastKeyVal)
+	{
+		return 0;
+	}
+	lastKeyVal = keyVal;
 	return keyVal;
 }
 

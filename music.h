@@ -139,66 +139,82 @@ static uint32_t speakerPin;
 #define AUDIO_NULL_SIZE 1
 static const uint32_t audioNULL[AUDIO_NULL_SIZE][2] = {{0,0}};
 
-// SFX here
+// ==== SFX here ====
+// == UI sfx ==
 // Generic beep
 #define SFX_BEEP_SIZE 4
 static const uint32_t SFXBeep[SFX_BEEP_SIZE][2] = {
     {0,100},{C3,100},{0,100},{0,0}
     }; 
-
+#define SFX_BEEP_HIGH_SIZE 4
+static const uint32_t SFXBeepHigh[SFX_BEEP_HIGH_SIZE][2] = {
+    {0,100},{G6,100},{0,100},{0,0}
+    }; 
 // Input beep
-#define SFX_INPUT_SIZE 6
-static const uint32_t SFXInput[SFX_INPUT_SIZE][2] = {
-    {0,100},{C3,100},{C6,100},{G6,100},{0,100},{0,0}
+#define SFX_BEEP_TWO_SIZE 5
+static const uint32_t SFXBeepTwo[SFX_BEEP_TWO_SIZE][2] = {
+    {0,100},{C3,100},{G6,100},{0,100},{0,0}
     };
 
+// Low health beep
+#define SFX_LOW_HEALTH_SIZE 7
+static const uint32_t SFXLowHealth[SFX_LOW_HEALTH_SIZE][2] = {
+    {0,100},{DS5_Eb5,100},{C5,250},{0,100},{DS5_Eb5,100},{C5,250},{0,0}
+    }; 
 // Blocked beep
 #define SFX_BLOCKED_SIZE 6
 static const uint32_t SFXBlocked[SFX_BLOCKED_SIZE][2] = {
     {0,100},{C3,100},{0,10},{C3,250},{0,100},{0,0}
 };
+// Typing
+#define SFX_TYPE_SIZE 5
+static const uint32_t SFXType[SFX_TYPE_SIZE][2] = {
+    {C2,20},{C2,20},{C2,20},{0,50},{0,0}
+};
 
-// https://virtualpiano.net/?song-post-16877
-
+// == Game outcome sfx ==
 // http://steellemon.com/2020/11/19/how-to-play-the-legend-of-zelda-secret-sound/
 // Secret Unlock
 #define SFX_SECRET_SIZE 11
 static const uint32_t SFXSecret[SFX_SECRET_SIZE][2] = {
-    {0,500},
-    {G5,250},
-    {FS5_Gb5,250},
-    {DS5_Eb5,250},
-    {A5,250},
-    {GS4_Ab4,250},
-    {E5,250},
-    {GS5_Ab5,250},
-    {C6,1250},
-    {0,500},
-    {0,0}
+    {0,500},{G5,250},{FS5_Gb5,250},{DS5_Eb5,250},{A4,250},{GS4_Ab4,250},{E5,250},{GS5_Ab5,250},{C6,500},{0,500},{0,0}
+};
+// https://musescore.com/crowred/final-fantasy-vi-victory-fanfare
+#define SFX_VICTORY_SIZE 13
+static const uint32_t SFXVictory[SFX_VICTORY_SIZE][2] = {
+    {0,500},{D5,125},{D5,125},{D5,125},{D5,250},{AS4_Bb4,250},{C5,250},{D5,125},{0,125},{C5,62},{D5,750},{0,500},{0,0}
+};
+// https://virtualpiano.net/music-sheet/reunion-final-fantasy-ii-nobuo-uematsu/
+#define SFX_DEFEAT_SIZE 32
+static const uint32_t SFXDefeat[SFX_DEFEAT_SIZE][2] = {
+    {0,500},{C6,500},{C5,500},{E5,500},{C6,500},{B5,500},{B4,500},{D5,500},{B5,500},{A5,500},{A4,500},{F5,500},{A5,500},{GS5_Ab5,500},{GS4_Ab4,500},{E5,500},{GS4_Ab4,500},{F5,500},{F4,500},{A4,500},{F5,500},{A5,500},{A4,500},{GS5_Ab5,500},{A5,500},{B5,500},{GS4_Ab4,500},{B4,500},{GS4_Ab4,500},{E5,500},{0,500},{0,0}
 };
 
-// Music here
-#define MUSIC_SWEDEN_SIZE 15
-static const uint32_t musicSweden[MUSIC_SWEDEN_SIZE][2] = {
-    {E4,750},{FS4_Gb4,750},{G4,750},{B4,750},{A4,750},{G4,750},{D4,2000},{E4,750},{FS4_Gb4,750},{G4,750},{B4,750},{A4,750},{G4,750},{D4,2000},{0,0}
+// == Character SFX ==
+// Health
+#define SFX_HEALTH_SIZE 32
+static const uint32_t SFXHealth[SFX_HEALTH_SIZE][2] = {
+    {0,100},{C4,100},{D4,100},{E4,100},{D4,100},{E4,100},{F4,100},{E4,100},{F4,100},{G4,100},{F4,100},{G4,100},{A4,100},{G4,100},{A4,100},{B4,100},{A4,100},{B4,100},{C5,100},{B4,100},{C5,100},{0,100},{0,0}
 };
 
+
+// ==== Music here ====
 // https://virtualpiano.net/music-sheet/links-memories-the-legend-of-zelda-koji-kondo/
-#define MUSIC_LINKS_MEMORIES_SIZE 55
-static const uint32_t musicLinksMemories[MUSIC_LINKS_MEMORIES_SIZE][2] = {
+// Links memories
+#define MUSIC_TITLE_SIZE 55
+static const uint32_t musicTitle[MUSIC_TITLE_SIZE][2] = {
     {G5,500},{C5,500},{C6,500},{C4,500},{G4,500},{AS5_Bb5,500},{G5,500},{C5,500},{C6,500},{C4,500},{G4,500},{AS5_Bb5,500},{D6,500},{C5,500},{C6,500},{C4,500},{G4,500},{AS5_Bb5,500},{D6,500},{C5,500},{C6,500},{C4,500},{G4,500},{D6,500},{C6,500},{G6,500},{G4,500},{DS6_Eb6,500},{G5,500},{C5,500},{C6,500},{C4,500},{G4,500},{AS5_Bb5,500},{G5,500},{C5,500},{C6,500},{C4,500},{G4,500},{AS5_Bb5,500},{CS2_Db2,1000},{F3,250},{AS3_Bb3,250},{C4,250},{F4,250},{AS4_Bb4,250},{C5,250},{F5,250},{AS5_Bb5,250},{C6,250},{F6,250},{AS6_Bb6,250},{C7,250},{0,1000},{0,0}
 };
-
 // https://virtualpiano.net/music-sheet/scattered-and-lost-celeste-lena-raine/
-#define MUSIC_SCATTERED_AND_LOST_SIZE 39
-static const uint32_t musicScatteredAndLost[MUSIC_SCATTERED_AND_LOST_SIZE][2] = {
-    {A4,250},{A5,250},{B5,250},{C6,250},{E5,250},{A5,750},{F4,250},{A5,250},{B5,250},{C6,250},{D5,250},{B4,750},{A4,250},{A5,250},{B5,250},{C6,250},{E5,250},{A5,750},{F4,250},{A5,250},{B5,250},{C6,250},{D5,250},{C5,250},{B4,250},{E5,250},{A4,250},{A5,250},{B5,250},{C6,250},{E5,250},{A5,750},{F4,250},{A5,250},{B5,250},{C6,250},{D5,250},{B4,750},{0,0}
-    // Song partially imported
-    // A4A5B5C6E5 A5 F4A5B5C6D5C5B4E5F4F5G5A5C5 F5 D4F5G5A5D5C5B4E5E4E5G5B5B4 E5 E3B4E5G5B3B4D#5F#5E4E5F#5G5B4 E5 C4E5F#5G5A4 F#4 E4E5F#5G5B4 E5 C4E5F#5G5A4G4F#4B4E4E5F#5G5B4 E5 C4E5F#5G5A4 F#4E4E5F#5G5B4 E5 C4E5F#5G5A4G4F#4B4C4C5D5E5G4 C5 A3C5D5E5A4G4F#4B4B3B4D5F#5F#4 B4 B2F#4B4D5F#3F#4A#4C#5B4F#4B5F#5B4F#4B5F#5B4F#4B5F#5B4F#4B5C#6    A#4F#4A#5F#5A#4F#4A#5F#5A#4F#4A#5F#5A#4F#4A#5A#4A4F#4A5F#5A4F#4A5F#5A4F#4A5F#5A4F#4A5B5    G#4E4G#5E5G#4E4G#5E5G#4E4G#5E5G#4E4G#5A#5B4F#4B5F#5B4F#4B5F#5B4F#4B5F#5B4F#4B5C#6    A#4F#4A#5F#5A#4F#4A#5F#5A#4F#4A#5F#5A#4F#4A#5A#4A4F#4A5F#5A4F#4A5F#5A4F#4A5F#5A4F#4A5B5G#4E4G#5E5G#4E4G#5E5G#4E4G#5E5E4G#4G#5A#5
+#define MUSIC_EXPLORE_SIZE 289
+static const uint32_t musicExplore[MUSIC_EXPLORE_SIZE][2] = {
+    {A4,250},{A5,250},{B5,250},{C6,250},{E5,500},{A5,500},{F4,250},{A5,250},{B5,250},{C6,250},{D5,500},{B4,500},{A4,250},{A5,250},{B5,250},{C6,250},{E5,500},{A5,500},{F4,250},{A5,250},{B5,250},{C6,250},{D5,250},{C5,250},{B4,250},{E5,250},{A4,250},{A5,250},{B5,250},{C6,250},{E5,500},{A5,500},{F4,250},{A5,250},{B5,250},{C6,250},{D5,500},{B4,500},{A4,250},{A5,250},{B5,250},{C6,250},{E5,500},{A5,500},{F4,250},{A5,250},{B5,250},{C6,250},{D5,250},{C5,250},{B4,250},{E5,250},{F4,250},{F5,250},{G5,250},{A5,250},{C5,500},{F5,500},{D4,250},{F5,250},{G5,250},{A5,250},{D5,250},{C5,250},{B4,250},{E5,250},{E4,250},{E5,250},{G5,250},{B5,250},{B4,500},{E5,500},{E3,250},{B4,250},{E5,250},{G5,250},{B3,250},{B4,250},{DS5_Eb5,250},{FS5_Gb5,250},{E4,250},{E5,250},{FS5_Gb5,250},{G5,250},{B4,500},{E5,500},{C4,250},{E5,250},{FS5_Gb5,250},{G5,250},{A4,500},{FS4_Gb4,500},{E4,250},{E5,250},{FS5_Gb5,250},{G5,250},{B4,500},{E5,500},{C4,250},{E5,250},{FS5_Gb5,250},{G5,250},{A4,250},{G4,250},{FS4_Gb4,250},{B4,250},{E4,250},{E5,250},{FS5_Gb5,250},{G5,250},{B4,500},{E5,500},{C4,250},{E5,250},{FS5_Gb5,250},{G5,250},{A4,500},{FS4_Gb4,500},{E4,250},{E5,250},{FS5_Gb5,250},{G5,250},{B4,500},{E5,500},{C4,250},{E5,250},{FS5_Gb5,250},{G5,250},{A4,250},{G4,250},{FS4_Gb4,250},{B4,250},{C4,250},{C5,250},{D5,250},{E5,250},{G4,500},{C5,500},{A3,250},{C5,250},{D5,250},{E5,250},{A4,250},{G4,250},{FS4_Gb4,250},{B4,250},{B3,250},{B4,250},{D5,250},{FS5_Gb5,250},{FS4_Gb4,500},{B4,500},{B2,250},{FS4_Gb4,250},{B4,250},{D5,250},{FS3_Gb3,250},{FS4_Gb4,250},{AS4_Bb4,250},{CS5_Db5,250},{B4,250},{FS4_Gb4,250},{B5,250},{FS5_Gb5,250},{B4,250},{FS4_Gb4,250},{B5,250},{FS5_Gb5,250},{B4,250},{FS4_Gb4,250},{B5,250},{FS5_Gb5,250},{B4,250},{FS4_Gb4,250},{B5,250},{CS6_Db6,250},{AS4_Bb4,250},{FS4_Gb4,250},{AS5_Bb5,250},{FS5_Gb5,250},{AS4_Bb4,250},{FS4_Gb4,250},{AS5_Bb5,250},{FS5_Gb5,250},{AS4_Bb4,250},{FS4_Gb4,250},{AS5_Bb5,250},{FS5_Gb5,250},{AS4_Bb4,250},{FS4_Gb4,250},{AS5_Bb5,250},{AS4_Bb4,250},{A4,250},{FS4_Gb4,250},{A5,250},{FS5_Gb5,250},{A4,250},{FS4_Gb4,250},{A5,250},{FS5_Gb5,250},{A4,250},{FS4_Gb4,250},{A5,250},{FS5_Gb5,250},{A4,250},{FS4_Gb4,250},{A5,250},{B5,250},{GS4_Ab4,250},{E4,250},{GS5_Ab5,250},{E5,250},{GS4_Ab4,250},{E4,250},{GS5_Ab5,250},{E5,250},{GS4_Ab4,250},{E4,250},{GS5_Ab5,250},{E5,250},{GS4_Ab4,250},{E4,250},{GS5_Ab5,250},{AS5_Bb5,250},{B4,250},{FS4_Gb4,250},{B5,250},{FS5_Gb5,250},{B4,250},{FS4_Gb4,250},{B5,250},{FS5_Gb5,250},{B4,250},{FS4_Gb4,250},{B5,250},{FS5_Gb5,250},{B4,250},{FS4_Gb4,250},{B5,250},{CS6_Db6,250},{AS4_Bb4,250},{FS4_Gb4,250},{AS5_Bb5,250},{FS5_Gb5,250},{AS4_Bb4,250},{FS4_Gb4,250},{AS5_Bb5,250},{FS5_Gb5,250},{AS4_Bb4,250},{FS4_Gb4,250},{AS5_Bb5,250},{FS5_Gb5,250},{AS4_Bb4,250},{FS4_Gb4,250},{AS5_Bb5,250},{AS4_Bb4,250},{A4,250},{FS4_Gb4,250},{A5,250},{FS5_Gb5,250},{A4,250},{FS4_Gb4,250},{A5,250},{FS5_Gb5,250},{A4,250},{FS4_Gb4,250},{A5,250},{FS5_Gb5,250},{A4,250},{FS4_Gb4,250},{A5,250},{B5,250},{GS4_Ab4,250},{E4,250},{GS5_Ab5,250},{E5,250},{GS4_Ab4,250},{E4,250},{GS5_Ab5,250},{E5,250},{GS4_Ab4,250},{E4,250},{GS5_Ab5,250},{E5,250},{E4,250},{GS4_Ab4,250},{GS5_Ab5,250},{AS5_Bb5,250},{0,0}
 };
 
-#define MUSIC_MORTAL_COMBAT_SIZE 160
-static const uint32_t musicMortalCombat[MUSIC_MORTAL_COMBAT_SIZE][2] = {
+// https://virtualpiano.net/music-sheet/mortal-kombat-theme-the-immortals/
+// Mortal combat theme
+#define MUSIC_COMBAT_SIZE 160
+static const uint32_t musicCombat[MUSIC_COMBAT_SIZE][2] = {
     {A4,125},{A4,125},{C5,125},{A4,125},{D5,125},{A4,125},{E5,125},{D5,125},{C5,125},{C5,125},{E5,125},{C5,125},{G5,125},{C5,125},{E5,125},{C5,125},{G4,125},{G4,125},{B4,125},{G4,125},{C5,125},{G4,125},{C5,125},{B4,125},{F4,125},{F4,125},{A4,125},{F4,125},{B4,125},{F4,125},{B4,125},{A4,125},{A4,125},{A4,125},{C5,125},{A4,125},{D5,125},{A4,125},{E5,125},{D5,125},{C5,125},{C5,125},{E5,125},{C5,125},{G5,125},{C5,125},{E5,125},{C5,125},{G4,125},{G4,125},{B4,125},{G4,125},{C5,125},{G4,125},{C5,125},{B4,125},{F4,125},{F4,125},{A4,125},{F4,125},{B4,125},{F4,125},{B4,500},{A4,500},{A4,500},{A4,500},{A4,500},{A4,500},{G4,125},{C5,500},{A4,500},{A4,500},{A4,500},{A4,500},{G4,125},{E4,500},{A4,500},{A4,500},{A4,500},{A4,500},{G4,125},{C5,500},{A4,500},{A4,500},{A4,500},{A4,125},{A4,500},{A4,125},{A4,500},{A4,500},{A4,500},{A4,500},{A4,500},{G4,125},{C5,500},{A4,500},{A4,500},{A4,500},{A4,500},{G4,125},{E4,500},{A4,500},{A4,500},{A4,500},{A4,500},{G4,125},{C5,500},{A4,500},{A4,500},{A4,500},{A4,125},{A4,500},{A4,125},{A4,500},{A4,125},{A4,125},{A4,125},{E5,125},{A4,125},{C5,125},{A4,125},{AS4_Bb4,125},{A4,125},{C5,125},{A4,125},{AS4_Bb4,125},{G4,500},{A4,125},{E5,125},{A4,125},{C5,125},{A4,125},{AS4_Bb4,125},{A4,125},{C5,125},{A4,125},{AS4_Bb4,125},{G4,500},{A4,125},{E5,125},{A4,125},{C5,125},{A4,125},{AS4_Bb4,125},{A4,125},{C5,125},{A4,125},{AS4_Bb4,125},{G4,500},{A4,125},{E5,125},{A4,125},{C5,125},{G4,125},{G4,125},{G4,125},{G4,125},{A4,125},{A4,500},{0,0}
 };
 

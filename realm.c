@@ -45,9 +45,11 @@ static tRealm theRealm;
 __attribute__((noreturn)) void runGame(void)  
 {
 	char ch;
-	
-	playSFX(musicLinksMemories, MUSIC_LINKS_MEMORIES_SIZE);
+	setRGBLED(0xffffff, c_ledStatusPins);
+	setPinHigh(c_ledHeartPin.Port,c_ledHeartPin.BitNumber);
+	playSFX(musicTitle, MUSIC_TITLE_SIZE);
 	randomize();
+
 	eputs("MicroRealms on the STM32L031\r\n");	
 	eputs(SPRITE_TITLE);
 	showHelp();		
@@ -56,7 +58,7 @@ __attribute__((noreturn)) void runGame(void)
 		
 		showGameMessage("Press M on the keypad to start a new game\r\n");
 		ch = getUserInput(1);		
-		playSFX(SFXInput, SFX_INPUT_SIZE);	
+		playSFX(SFXBeepTwo, SFX_BEEP_TWO_SIZE);	
 		
 		if ( (ch == 'M') || (ch == 'm') )
 			GameStarted = 1;
@@ -68,16 +70,24 @@ __attribute__((noreturn)) void runGame(void)
 	showRealm(&theRealm,&thePlayer);
 	showGameMessage("Press H for help");
 	
-	playMusic(musicScatteredAndLost,MUSIC_SCATTERED_AND_LOST_SIZE);
+	playMusic(musicExplore,MUSIC_EXPLORE_SIZE);
 	while (1)
 	{
-		randomize();
-		setRGBLED(0x00ff00, c_ledStatusPins);
+		if (thePlayer.health < 25)
+		{
+			playSFX(SFXLowHealth,SFX_LOW_HEALTH_SIZE);
+			setRGBLED(0x00ff00, c_ledStatusPins);
+		}
+		else
+		{
+			setRGBLED(0x00ff00, c_ledStatusPins);
+		}
+		
 		ch = getUserInput(1);
 		ch = ch | 32; // enforce lower case
 		switch (ch) {
 			case 'h' : {
-				playSFX(SFXInput, SFX_INPUT_SIZE);
+				playSFX(SFXBeepTwo, SFX_BEEP_TWO_SIZE);
 				showHelp();
 				break;
 			}
@@ -102,7 +112,7 @@ __attribute__((noreturn)) void runGame(void)
 				break;
 			}
 			case 'm' : {		
-				playSFX(SFXInput, SFX_INPUT_SIZE);
+				playSFX(SFXBeepTwo, SFX_BEEP_TWO_SIZE);
 				if (thePlayer.wealth)		
 				{
 					showRealm(&theRealm,&thePlayer);
@@ -113,7 +123,7 @@ __attribute__((noreturn)) void runGame(void)
 				break;
 			}
 			case 'p' : {	
-				playSFX(SFXInput, SFX_INPUT_SIZE);			
+				playSFX(SFXBeepTwo, SFX_BEEP_TWO_SIZE);
 				showPlayer(&thePlayer);
 				break;
 			}
@@ -261,7 +271,7 @@ void step(char Direction,tPlayer *Player,tRealm *Realm)
 }
 int doChallenge(tPlayer *Player,int BadGuyIndex)
 {
-	playMusic(musicMortalCombat, MUSIC_MORTAL_COMBAT_SIZE);
+	playMusic(musicCombat, MUSIC_COMBAT_SIZE);
 	char ch;
 	char Damage;
 	const byte *dmg;
@@ -362,12 +372,13 @@ int doChallenge(tPlayer *Player,int BadGuyIndex)
 		}
 		if (Player->health == 0)
 		{ // You died
+			playSFX(SFXDefeat,SFX_DEFEAT_SIZE);
 			eputs("You are dead. Press Reset to restart");
 			while(1);
 		}
 		else
 		{ // You won!
-		playMusic(musicLinksMemories, MUSIC_LINKS_MEMORIES_SIZE);
+			playSFX(SFXVictory,SFX_VICTORY_SIZE);
 			Player->wealth = (uint8_t)(50 + random(50));			
 			showGameMessage("You win! Their gold is yours");			
 			return 1;
@@ -468,19 +479,21 @@ void setStrength(tPlayer *Player, byte strength)
 }
 void initPlayer(tPlayer *Player,tRealm *Realm)
 {
+	setRGBLED(0x00ffff, c_ledStatusPins); // 
+	
 	// get the player name
 	int index=0;
 	byte x,y;
 	char ch=0;
 	// Initialize the player's attributes
-	setRGBLED(0x00ffff, c_ledStatusPins);
 	eputs("Enter the player's name: ");
 	while ( (index < MAX_NAME_LEN) && (ch != '\n') && (ch != '\r'))
 	{
 		ch = getUserInput(0);
+		playSFX(SFXType,SFX_TYPE_SIZE);
 		if ( ch > '0' ) // strip conrol characters
 		{
-			
+			playSFX(SFXType,SFX_TYPE_SIZE);	
 			Player->name[index++]=ch;
 			eputchar(ch);
 		}
@@ -525,7 +538,7 @@ void showPlayer(tPlayer *Player)
 	eputs(" >");
 	eputs("\r\nWeapon2:\t< ");
 	eputs(getWeaponName(Player->Weapon2));
-	eputs(" >");
+	eputs(" >\r\n");
 }
 void initRealm(tRealm *Realm)
 {
@@ -570,7 +583,7 @@ void showRealm(tRealm *Realm,tPlayer *Player)
 		}
 		eputs("\r\n");
 	}
-	eputs("\r\nLegend\r\n");
+	eputs("\r\n - - --==== Legend ====-- - -\r\n");
 	eputs("(T)roll, (O)gre, (D)ragon, (H)ag, e(X)it\r\n");
 	eputs("(w)eapon, (g)old), (m)agic, (s)trength\r\n");
 	eputs("@=You\r\n");
@@ -599,7 +612,7 @@ char getUserInput(uint8_t inputMode)
 {
 	char ch = 0;
 	uint8_t val = 0;		
-	inputMode = 0; // force keyboard
+	// inputMode = 0; // force keyboard
 	if (inputMode == 0)
 	{
 		// Computer keyboard input
@@ -611,7 +624,11 @@ char getUserInput(uint8_t inputMode)
 	else
 	{
 		// Microprocessor keypad input
-		val = getKeypadValue(c_keypadPins);
+		while (val == 0)
+		{
+			val = getKeypadValue(c_keypadPins);
+			delay(500);
+		}
 		switch (val)
 		{
 			case 17:
@@ -729,5 +746,57 @@ void randomize()
 		{
 			shift_register += ADCRead();
 		}
+	}
+}
+// At health 100 it will blink every second
+// at at health 25, it will blink every half second
+void Health_Display_Handler()
+{
+	// Delay handler adjust to SysTick -> LOAD every 100 ticks
+	static uint32_t subDly1 = 0;
+	static uint32_t subDly2 = 0;
+	static uint32_t onTime = 0; // Set to 250 ms
+	static uint32_t dly = 0; // delay between each heart beat, 1000 by default
+	if (thePlayer.health > 0)
+	{
+		if (subDly1 > 0) subDly1--;
+		if (subDly2 > 0) subDly2--;
+
+		if (dly <= 100)
+		{
+			dly = (uint32_t)(2000 * (thePlayer.health / 100.0));
+			dly = (uint32_t)(20 * thePlayer.health);
+			if (dly < 500) dly = 500;
+			if (dly > 2000) dly = 200;
+			
+			onTime = 250;
+		}
+		else
+		{
+			if (subDly1 <= 0)
+			{
+				dly -= 100;
+				subDly1 = (uint32_t)(100 * (CPU_FREQ/1000.0) / SysTick->LOAD);
+			}
+			
+		}
+
+		if (onTime <= 100)
+		{
+			setPinLow(c_ledHeartPin.Port,c_ledHeartPin.BitNumber);
+		}
+		else
+		{	
+			if (subDly2 <= 0)
+			{
+				onTime -= 100;
+				subDly2 = (uint32_t)(100 * (CPU_FREQ/1000.0) / SysTick->LOAD);
+			}
+			setPinHigh(c_ledHeartPin.Port,c_ledHeartPin.BitNumber);
+		}
+	}
+	else
+	{
+		setPinHigh(c_ledHeartPin.Port,c_ledHeartPin.BitNumber);
 	}
 }
