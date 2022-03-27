@@ -28,6 +28,7 @@ void Audio_Handler(void)
 
 	if (soundDuration <= 0)
 	{
+		// If there is a sfx read, play the sfx otherwise default to playing music in a loop
 		if (hasSFX == 1)
 		{
 			pitch = SFX.pitches[SFX.pos][0];
@@ -46,6 +47,7 @@ void Audio_Handler(void)
 			}	
 		}
 
+		// Set speaker pitch
 		if (pitch == 0)
 		{
 			SysTick->LOAD = 16000;
@@ -55,6 +57,7 @@ void Audio_Handler(void)
 			SysTick->LOAD = CPU_FREQ / (2 * pitch);
 		}
 
+		// Set speaker play duration
 		soundDuration =  (uint32_t)(duration * (CPU_FREQ/1000.0) / SysTick->LOAD);
 	}
     else

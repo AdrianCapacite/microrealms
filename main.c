@@ -6,6 +6,7 @@ void SysTick_Handler(void);
 
 int main()
 {
+	// Initialisation
 	initPins();
 	initClock();
 	initSerial();

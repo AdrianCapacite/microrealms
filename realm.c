@@ -16,7 +16,15 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-
+/*
+	This program has been modified by Adrian Capacite as a part of an assignment
+	Modifications include:
+		- Addition of LEDs and Speakers
+		- Implementation of keypad functionality
+		- Implementation of RGB led functionality
+		- Implementation of music and sound effects
+		- Implementation of ADC and randomization of game
+*/
 #include "realm.h"
 #include "stm32l031lib.h"
 #include "music.h"
@@ -142,6 +150,7 @@ __attribute__((noreturn)) void runGame(void)
 		} // end switch
 	} // end while
 }
+// Modified for better formatting and extra fx
 void step(char Direction,tPlayer *Player,tRealm *Realm)
 {
 	uint8_t new_x, new_y;
@@ -298,6 +307,7 @@ void step(char Direction,tPlayer *Player,tRealm *Realm)
 	if (Consumed)
 		Realm->map[new_y][new_x] = '.'; // remove any item that was found
 }
+// Modified for better formatting
 int doChallenge(tPlayer *Player,int BadGuyIndex)
 {
 	setRGBLED(0x00ffff, c_ledStatusPins);
@@ -568,6 +578,7 @@ void initPlayer(tPlayer *Player,tRealm *Realm)
 	Player->x=x;
 	Player->y=y;
 }
+// Modified for better formatting
 void showPlayer(tPlayer *Player)
 {
 	eputs(
@@ -624,6 +635,7 @@ void initRealm(tRealm *Realm)
 	y = random(MAP_HEIGHT);
 	Realm->map[y][x]='X';
 }
+// Modified for better formatting
 void showRealm(tRealm *Realm,tPlayer *Player)
 {
 	int x,y;
@@ -657,6 +669,7 @@ void showRealm(tRealm *Realm,tPlayer *Player)
 		"\r\n"
 		);
 }
+// Modified for better formatting
 void showHelp()
 {
 	eputs(
@@ -676,6 +689,8 @@ void showHelp()
 		);
 }
 
+// Show game message
+// Modified for better formatting
 void showGameMessage(char *Msg)
 {
 	eputs(Msg);
@@ -686,6 +701,7 @@ void showGameMessage(char *Msg)
 // inputMode:
 // 		0 -> Computer keyboard input
 //		1 -> Keypad input
+// Modified for keypad input
 char getUserInput(uint8_t inputMode)
 {
 	char ch = 0;
@@ -814,6 +830,8 @@ uint32_t prbs()
 	}
 	return shift_register & 0x7ffffff; // return 31 LSB's
 }
+
+// ==== Below is code added by Adrian Capacite ==== 
 void randomize()
 {
 	shift_register = 0;
